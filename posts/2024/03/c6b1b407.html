@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Hexo-abbrlink插件使用   1**.为了给Hexo博客生成简洁唯一且URL不变的链接，我使用了hexo-abbrlink插件：** 1npm install hexo-abbrlink --save  2.对Hexo根目录下_config.yml进行修改： 12345678910111213# URL## Set your site url here.url: https:&#x2F;&#x2F;www">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo Abbrlink使用">
+<meta property="og:url" content="https://seyou.lol/posts/2024/03/c6b1b407.html">
+<meta property="og:site_name" content="Seyou">
+<meta property="og:description" content="Hexo-abbrlink插件使用   1**.为了给Hexo博客生成简洁唯一且URL不变的链接，我使用了hexo-abbrlink插件：** 1npm install hexo-abbrlink --save  2.对Hexo根目录下_config.yml进行修改： 12345678910111213# URL## Set your site url here.url: https:&#x2F;&#x2F;www">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://telegraph-image.pages.dev/file/a98e5bffdc6b8db65f82b.jpg">
+<meta property="article:published_time" content="2024-03-21T08:39:40.000Z">
+<meta property="article:modified_time" content="2024-03-21T08:40:31.209Z">
+<meta property="article:author" content="Ming Yu Zhang">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://telegraph-image.pages.dev/file/a98e5bffdc6b8db65f82b.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Hexo Abbrlink使用</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/ZMY2023yu">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/posts/2024/03/3384d767.html"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/posts/2024/03/bc12509.html"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://seyou.lol/posts/2024/03/c6b1b407.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://seyou.lol/posts/2024/03/c6b1b407.html&text=Hexo Abbrlink使用"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://seyou.lol/posts/2024/03/c6b1b407.html&title=Hexo Abbrlink使用"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://seyou.lol/posts/2024/03/c6b1b407.html&is_video=false&description=Hexo Abbrlink使用"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hexo Abbrlink使用&body=Check out this article: https://seyou.lol/posts/2024/03/c6b1b407.html"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://seyou.lol/posts/2024/03/c6b1b407.html&title=Hexo Abbrlink使用"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://seyou.lol/posts/2024/03/c6b1b407.html&title=Hexo Abbrlink使用"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://seyou.lol/posts/2024/03/c6b1b407.html&title=Hexo Abbrlink使用"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://seyou.lol/posts/2024/03/c6b1b407.html&title=Hexo Abbrlink使用"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://seyou.lol/posts/2024/03/c6b1b407.html&name=Hexo Abbrlink使用&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://seyou.lol/posts/2024/03/c6b1b407.html&t=Hexo Abbrlink使用"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo-abbrlink%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text"> Hexo-abbrlink插件使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E4%B8%BA%E4%BA%86%E7%BB%99hexo%E5%8D%9A%E5%AE%A2%E7%94%9F%E6%88%90%E7%AE%80%E6%B4%81%E5%94%AF%E4%B8%80%E4%B8%94url%E4%B8%8D%E5%8F%98%E7%9A%84%E9%93%BE%E6%8E%A5%E6%88%91%E4%BD%BF%E7%94%A8%E4%BA%86hexo-abbrlink%E6%8F%92%E4%BB%B6"><span class="toc-number">1.0.0.1.</span> <span class="toc-text"> 1**.为了给Hexo博客生成简洁唯一且URL不变的链接，我使用了hexo-abbrlink插件：**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E5%AF%B9hexo%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B_configyml%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%94%B9"><span class="toc-number">1.0.0.2.</span> <span class="toc-text"> 2.对Hexo根目录下_config.yml进行修改：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E6%9C%80%E5%90%8E%E4%B8%80%E5%AE%9A%E8%A6%81%E6%89%A7%E8%A1%8C"><span class="toc-number">1.0.0.3.</span> <span class="toc-text"> 3.最后一定要执行：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-number">1.0.0.4.</span> <span class="toc-text"> 4.一些问题：</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Hexo Abbrlink使用
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Ming Yu Zhang</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-03-21T08:39:40.000Z" class="dt-published" itemprop="datePublished">2024-03-21</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="hexo-abbrlink插件使用"><a class="markdownIt-Anchor" href="#hexo-abbrlink插件使用"></a> Hexo-abbrlink插件使用</h1>
+<p><img src="https://telegraph-image.pages.dev/file/a98e5bffdc6b8db65f82b.jpg" alt="avatar" /></p>
+<h4 id="1为了给hexo博客生成简洁唯一且url不变的链接我使用了hexo-abbrlink插件"><a class="markdownIt-Anchor" href="#1为了给hexo博客生成简洁唯一且url不变的链接我使用了hexo-abbrlink插件"></a> 1**.为了给Hexo博客生成简洁唯一且URL不变的链接，我使用了hexo-abbrlink插件：**</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure>
+<h4 id="2对hexo根目录下_configyml进行修改"><a class="markdownIt-Anchor" href="#2对hexo根目录下_configyml进行修改"></a> 2.<strong>对Hexo根目录下_config.yml进行修改：</strong></h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## Set your site url here.</span><br><span class="line">url: https://www.seyou.life</span><br><span class="line"># permalink: :year/:month/:day/:title/</span><br><span class="line">permalink: posts/:year/:month/:abbrlink.html  # 也可以直接写 posts/:abbrlink.html</span><br><span class="line"># abbrlink config</span><br><span class="line">abbrlink:</span><br><span class="line">  alg: crc32      #support crc16(default) and crc32</span><br><span class="line">  rep: hex        #support dec(default) and hex</span><br><span class="line">permalink_defaults:</span><br><span class="line">pretty_urls:</span><br><span class="line">  trailing_index: true # Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span><br><span class="line">  trailing_html: true # Set to false to remove trailing &#x27;.html&#x27; from permalinks</span><br></pre></td></tr></table></figure>
+<h4 id="3最后一定要执行"><a class="markdownIt-Anchor" href="#3最后一定要执行"></a> 3.<strong>最后一定要执行：</strong></h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<h4 id="4一些问题"><a class="markdownIt-Anchor" href="#4一些问题"></a> 4.<strong>一些问题：</strong></h4>
+<ul>
+<li>**问题：**查看Xftp文章文件夹存在undefined，文件也变成undefind.html</li>
+<li>**解决办法：**执行<code>hexo clean</code></li>
+<li>**问题：**Nginx502 Bad gateway</li>
+<li><strong>解决办法：</strong><code>hexo server</code></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/ZMY2023yu">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo-abbrlink%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text"> Hexo-abbrlink插件使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E4%B8%BA%E4%BA%86%E7%BB%99hexo%E5%8D%9A%E5%AE%A2%E7%94%9F%E6%88%90%E7%AE%80%E6%B4%81%E5%94%AF%E4%B8%80%E4%B8%94url%E4%B8%8D%E5%8F%98%E7%9A%84%E9%93%BE%E6%8E%A5%E6%88%91%E4%BD%BF%E7%94%A8%E4%BA%86hexo-abbrlink%E6%8F%92%E4%BB%B6"><span class="toc-number">1.0.0.1.</span> <span class="toc-text"> 1**.为了给Hexo博客生成简洁唯一且URL不变的链接，我使用了hexo-abbrlink插件：**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E5%AF%B9hexo%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B_configyml%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%94%B9"><span class="toc-number">1.0.0.2.</span> <span class="toc-text"> 2.对Hexo根目录下_config.yml进行修改：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E6%9C%80%E5%90%8E%E4%B8%80%E5%AE%9A%E8%A6%81%E6%89%A7%E8%A1%8C"><span class="toc-number">1.0.0.3.</span> <span class="toc-text"> 3.最后一定要执行：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-number">1.0.0.4.</span> <span class="toc-text"> 4.一些问题：</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://seyou.lol/posts/2024/03/c6b1b407.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://seyou.lol/posts/2024/03/c6b1b407.html&text=Hexo Abbrlink使用"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://seyou.lol/posts/2024/03/c6b1b407.html&title=Hexo Abbrlink使用"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://seyou.lol/posts/2024/03/c6b1b407.html&is_video=false&description=Hexo Abbrlink使用"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hexo Abbrlink使用&body=Check out this article: https://seyou.lol/posts/2024/03/c6b1b407.html"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://seyou.lol/posts/2024/03/c6b1b407.html&title=Hexo Abbrlink使用"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://seyou.lol/posts/2024/03/c6b1b407.html&title=Hexo Abbrlink使用"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://seyou.lol/posts/2024/03/c6b1b407.html&title=Hexo Abbrlink使用"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://seyou.lol/posts/2024/03/c6b1b407.html&title=Hexo Abbrlink使用"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://seyou.lol/posts/2024/03/c6b1b407.html&name=Hexo Abbrlink使用&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://seyou.lol/posts/2024/03/c6b1b407.html&t=Hexo Abbrlink使用"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left" style="margin-bottom: 0;">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Ming Yu Zhang
+
+  </div>
+
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/ZMY2023yu">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
