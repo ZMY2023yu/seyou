@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Let’s Encrypt 证书安装  使用第三方脚本   安装acme.sh   curl https:&#x2F;&#x2F;get.acme.sh | sh -s email&#x3D;my@example.com 123452. 使用alias命令创建别名   - &#96;&#96;&#96;     alias acme.sh&#x3D;~&#x2F;.acme.sh&#x2F;acme.sh       到安装目录下更新脚本   .&#x2F;acme.sh --upgra">
+    <meta name="description" content="Let’s Encrypt 证书安装  使用第三方脚本   安装acme.sh   curl https:&#x2F;&#x2F;get.acme.sh | sh -s email&#x3D;my@example.com 123452. 使用alias命令创建别名   - &#96;&#96;&#96;bash     alias acme.sh&#x3D;~&#x2F;.acme.sh&#x2F;acme.sh       到安装目录下更新脚本   .&#x2F;acme.sh --u">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Let&#39;s Encrypt证书安装">
 <meta property="og:url" content="https://seyou.lol/posts/2024/03/bc12509.html">
 <meta property="og:site_name" content="Seyou">
-<meta property="og:description" content="Let’s Encrypt 证书安装  使用第三方脚本   安装acme.sh   curl https:&#x2F;&#x2F;get.acme.sh | sh -s email&#x3D;my@example.com 123452. 使用alias命令创建别名   - &#96;&#96;&#96;     alias acme.sh&#x3D;~&#x2F;.acme.sh&#x2F;acme.sh       到安装目录下更新脚本   .&#x2F;acme.sh --upgra">
+<meta property="og:description" content="Let’s Encrypt 证书安装  使用第三方脚本   安装acme.sh   curl https:&#x2F;&#x2F;get.acme.sh | sh -s email&#x3D;my@example.com 123452. 使用alias命令创建别名   - &#96;&#96;&#96;bash     alias acme.sh&#x3D;~&#x2F;.acme.sh&#x2F;acme.sh       到安装目录下更新脚本   .&#x2F;acme.sh --u">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-21T08:37:09.000Z">
-<meta property="article:modified_time" content="2024-03-21T08:54:34.352Z">
+<meta property="article:modified_time" content="2024-03-21T14:11:13.272Z">
 <meta property="article:author" content="Ming Yu Zhang">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
@@ -166,8 +166,8 @@
 <p><a target="_blank" rel="noopener" href="http://xn--acme-ke9g492u.sh">安装acme.sh</a></p>
 <ul>
 <li>
-<pre class="highlight"><code class="">curl https://get.acme.sh | sh -s email=my@example.com
-<div class="highlight-wrap" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 使用alias命令创建别名</span><br><span class="line"></span><br><span class="line">   - ```</span><br><span class="line">     alias acme.sh=~/.acme.sh/acme.sh</span><br></pre></td></tr></table></figure></div>
+<pre class="highlight"><code class="bash">curl https://get.acme.sh | sh -s email=my@example.com
+<div class="highlight-wrap" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 使用alias命令创建别名</span><br><span class="line"></span><br><span class="line">   - ```bash</span><br><span class="line">     alias acme.sh=~/.acme.sh/acme.sh</span><br></pre></td></tr></table></figure></div>
 
 </code></pre>
 </li>
@@ -177,8 +177,8 @@
 <p>到安装目录下更新脚本</p>
 <ul>
 <li>
-<pre class="highlight"><code class="">./acme.sh --upgrade
-<div class="highlight-wrap" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. 开启自动更新</span><br><span class="line"></span><br><span class="line">   - ```</span><br><span class="line">     ./acme.sh --upgrade --auto-upgrade</span><br></pre></td></tr></table></figure></div>
+<pre class="highlight"><code class="bash">./acme.sh --upgrade
+<div class="highlight-wrap" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. 开启自动更新</span><br><span class="line"></span><br><span class="line">   - ```bash</span><br><span class="line">     ./acme.sh --upgrade --auto-upgrade</span><br></pre></td></tr></table></figure></div>
 
 </code></pre>
 </li>
@@ -188,19 +188,16 @@
 <p>生成证书</p>
 <ul>
 <li>
-<pre class="highlight"><code class="">acme.sh --issue -d mydomain.com -d www.mydomain.com --webroot /home/wwwroot/mydomain.com/
-<div class="highlight-wrap" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">6. copy/安装证书</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<pre class="highlight"><code class="bash">acme.sh --issue -d mydomain.com -d www.mydomain.com --webroot /home/wwwroot/mydomain.com/
+<div class="highlight-wrap" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">6. copy/安装证书</span><br><span class="line"></span><br><span class="line">   ```bash</span><br><span class="line">   acme.sh --install-cert -d example.com \</span><br><span class="line">   --key-file       /path/to/keyfile/in/nginx/key.pem  \</span><br><span class="line">   --fullchain-file /path/to/fullchain/nginx/cert.pem \</span><br><span class="line">   --reloadcmd     &quot;service nginx force-reload&quot;</span><br></pre></td></tr></table></figure></div>
+
 </code></pre>
 </li>
 </ul>
-<p><a target="_blank" rel="noopener" href="http://acme.sh">acme.sh</a> --install-cert -d <a target="_blank" rel="noopener" href="http://example.com">example.com</a> <br />
-–key-file       /path/to/keyfile/in/nginx/key.pem  <br />
-–fullchain-file /path/to/fullchain/nginx/cert.pem <br />
-–reloadcmd     “service nginx force-reload”</p>
-<div class="highlight-wrap" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">7. 查看已安装证书信息</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<p><a target="_blank" rel="noopener" href="http://acme.sh">acme.sh</a> --info -d <a target="_blank" rel="noopener" href="http://example.com">example.com</a></p>
-<pre class="highlight"><code class="">
-</code></pre>
+</li>
+<li>
+<p>查看已安装证书信息</p>
+<div class="highlight-wrap" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --info -d example.com</span><br></pre></td></tr></table></figure></div>
 </li>
 <li>
 <p>宝塔可以一键安装证书</p>
