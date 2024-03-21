@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Stable Diffusion  Stable Diffusion AI绘画   背景知识  人工智能生成内容  人工智能生成内容（Artificial Intelligence Generated Content，简称 AIGC）是当下最火的概念之一。AIGC 被认为是继专业生成内容（Professional Generated Content, PGC）和用户生成内容（User Gener">
+<meta property="og:type" content="article">
+<meta property="og:title" content="StableDiffusion">
+<meta property="og:url" content="https://www.seyou.lol/posts/2024/03/fc385c23.html">
+<meta property="og:site_name" content="Seyou">
+<meta property="og:description" content="Stable Diffusion  Stable Diffusion AI绘画   背景知识  人工智能生成内容  人工智能生成内容（Artificial Intelligence Generated Content，简称 AIGC）是当下最火的概念之一。AIGC 被认为是继专业生成内容（Professional Generated Content, PGC）和用户生成内容（User Gener">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/4%E6%9C%881%E6%97%A5%20%281%29-%E5%B0%81%E9%9D%A2.jpg">
+<meta property="og:image" content="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00010-3943537200.png">
+<meta property="og:image" content="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00001-1238557301.png">
+<meta property="og:image" content="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00009-2792010388.png">
+<meta property="og:image" content="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00000-1886411285.png">
+<meta property="og:image" content="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00002-3289418864.png">
+<meta property="og:image" content="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00008-1556040907.png">
+<meta property="og:image" content="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00006-3316726984.png">
+<meta property="og:image" content="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00007-901757382.png">
+<meta property="og:image" content="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00005-3131953369.png">
+<meta property="og:image" content="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00006-3316726984(1).png">
+<meta property="og:image" content="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00003-1033096148.png">
+<meta property="og:image" content="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00004-2193222042.png">
+<meta property="article:published_time" content="2024-03-21T07:50:11.000Z">
+<meta property="article:modified_time" content="2024-03-21T07:51:44.048Z">
+<meta property="article:author" content="Ming Yu Zhang">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/4%E6%9C%881%E6%97%A5%20%281%29-%E5%B0%81%E9%9D%A2.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>StableDiffusion</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/ZMY2023yu">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/posts/2024/03/5fade8e6.html"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.seyou.lol/posts/2024/03/fc385c23.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&text=StableDiffusion"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&title=StableDiffusion"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&is_video=false&description=StableDiffusion"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=StableDiffusion&body=Check out this article: https://www.seyou.lol/posts/2024/03/fc385c23.html"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&title=StableDiffusion"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&title=StableDiffusion"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&title=StableDiffusion"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&title=StableDiffusion"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&name=StableDiffusion&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.seyou.lol/posts/2024/03/fc385c23.html&t=StableDiffusion"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#stable-diffusion"><span class="toc-number">1.</span> <span class="toc-text"> Stable Diffusion</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#stable-diffusion-ai%E7%BB%98%E7%94%BB"><span class="toc-number">1.0.0.1.</span> <span class="toc-text"> Stable Diffusion AI绘画</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="toc-number">1.0.0.2.</span> <span class="toc-text"> 背景知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E6%BC%94%E7%A4%BA"><span class="toc-number">1.0.0.3.</span> <span class="toc-text"> 视频演示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E5%AD%97%E8%AF%B4%E6%98%8E"><span class="toc-number">1.0.0.4.</span> <span class="toc-text"> 文字说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-number">1.0.0.5.</span> <span class="toc-text"> 成果展示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%AF%8D%E6%8E%A8%E8%8D%90"><span class="toc-number">1.0.0.6.</span> <span class="toc-text"> 关键词推荐</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        StableDiffusion
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Ming Yu Zhang</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-03-21T07:50:11.000Z" class="dt-published" itemprop="datePublished">2024-03-21</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="stable-diffusion"><a class="markdownIt-Anchor" href="#stable-diffusion"></a> Stable Diffusion</h1>
+<h4 id="stable-diffusion-ai绘画"><a class="markdownIt-Anchor" href="#stable-diffusion-ai绘画"></a> Stable Diffusion AI绘画</h4>
+<p><img src="https://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/4%E6%9C%881%E6%97%A5%20%281%29-%E5%B0%81%E9%9D%A2.jpg" alt="AI生成" /></p>
+<h4 id="背景知识"><a class="markdownIt-Anchor" href="#背景知识"></a> 背景知识</h4>
+<ol>
+<li>人工智能生成内容
+<ul>
+<li>人工智能生成内容（Artificial Intelligence Generated Content，简称 AIGC）是当下最火的概念之一。AIGC 被认为是继专业生成内容（Professional Generated Content, PGC）和用户生成内容（User Generated Content, UGC）之后，利用人工智能技术自动生成内容的新型生产方式。</li>
+</ul>
+</li>
+<li>Stable Diffusion
+<ul>
+<li>Stable Diffusion 是一种扩散模型（Diffusion Model）的变体，称为“潜在扩散模型”（Latent Diffusion Model），由CompVis、Stability AI 和 LAION 的研究人员和工程师创建。它使用来自 LAION-5B 数据库子集的图像进行训练。使用这个模型，可以生成包括人脸在内的任何图像，因为有开源的预训练模型，所以我们也可以在自己的机器上运行它。Stable Diffusion 能够根据我们提供的一些提示词以及可以调整的部分参数，通过模型计算生成一张不错的图片。</li>
+</ul>
+</li>
+</ol>
+<h4 id="视频演示"><a class="markdownIt-Anchor" href="#视频演示"></a> 视频演示</h4>
+<video id="video" controls="" preload="none" poster="https://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/4%E6%9C%881%E6%97%A5%20%281%29-%E5%B0%81%E9%9D%A2.jpg">
+      <source id="webm" src="https://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/video/%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B.webm" type="video/webm">
+</videos>
+<h4 id="文字说明"><a class="markdownIt-Anchor" href="#文字说明"></a> 文字说明</h4>
+<ol>
+<li>
+<p>安装基础工具</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y git conda mesa-libGL zlib-devel libjpeg-turbo-devel</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>确认 Python 版本。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#以 Python 3.8 版本为例</span><br><span class="line">sudo yum install -y python38 python38-pip </span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>拉取 Stable Diffusion WebUI 代码。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># github 如果github访问被墙请采用gitee</span><br><span class="line">git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git</span><br><span class="line"># gitee</span><br><span class="line">git clone https://gitee.com/developer-aliyun-com/stable-diffusion-webui.git</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>进入代码目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd stable-diffusion-webui</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>安装项目依赖。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip3.8 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117</span><br><span class="line">pip3.8 install opencv-python-headless gfpgan open-clip-torch xformers pyngrok clip-anytorch</span><br><span class="line">pip3.8 install -r requirements_versions.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>启动 Stable Diffusion WebUI。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3.8 launch.py --listen</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>访问web页面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ip:7860</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="成果展示"><a class="markdownIt-Anchor" href="#成果展示"></a> 成果展示</h4>
+<img src="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00010-3943537200.png" alt="00010-3943537200" style="zoom:100%;" />
+<p><img src="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00001-1238557301.png" alt="00002-3289418864" /></p>
+<p><img src="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00009-2792010388.png" alt="00001-1238557301" /></p>
+<p><img src="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00000-1886411285.png" alt="00000-1886411285" /></p>
+<p><img src="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00002-3289418864.png" alt="00009-2792010388" /></p>
+<p><img src="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00008-1556040907.png" alt="00008-1556040907" /></p>
+<p><img src="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00006-3316726984.png" alt="00007-901757382" /></p>
+<p><img src="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00007-901757382.png" alt="00006-3316726984(1)" /></p>
+<p><img src="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00005-3131953369.png" alt="00006-3316726984" /></p>
+<p><img src="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00006-3316726984(1).png" alt="00005-3131953369" /></p>
+<p><img src="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00003-1033096148.png" alt="00004-2193222042" /></p>
+<p><img src="http://typoraseyou.oss-cn-hongkong.aliyuncs.com/static/img/00004-2193222042.png" alt="00003-1033096148" /></p>
+<h4 id="关键词推荐"><a class="markdownIt-Anchor" href="#关键词推荐"></a> 关键词推荐</h4>
+<ul>
+<li>
+<p>魔咒百科词典</p>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://aitag.top/">https://aitag.top/</a></p>
+</li>
+<li>
+<iframe height=360 width=480 src="//player.bilibili.com/player.html?aid=604055410" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" high_quality="1" sandbox=“allow-top-navigation allow-same-origin allow-forms allow-scripts” width="100%" height="500" muted="true"> </iframe>
+</li>
+</ul>
+</li>
+<li>
+<p>鳖哲法典</p>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="http://tomxlysplay.com.cn/#/">http://tomxlysplay.com.cn/#/</a></p>
+</li>
+<li>
+<iframe height=360 width=480 src="//player.bilibili.com/player.html?aid=304647657" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+</li>
+<li>
+<p><strong>Github</strong> : <a target="_blank" rel="noopener" href="https://github.com/Chuchuwen9637/noveaitag">Noveaitag</a></p>
+</li>
+<li>
+<p>模型网址：<a target="_blank" rel="noopener" href="https://civitai.com/tag/lora?spm=a2c6h.13858378.0.0.e75653b7lspwLm">https://civitai.com/tag/lora?spm=a2c6h.13858378.0.0.e75653b7lspwLm</a></p>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/ZMY2023yu">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#stable-diffusion"><span class="toc-number">1.</span> <span class="toc-text"> Stable Diffusion</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#stable-diffusion-ai%E7%BB%98%E7%94%BB"><span class="toc-number">1.0.0.1.</span> <span class="toc-text"> Stable Diffusion AI绘画</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="toc-number">1.0.0.2.</span> <span class="toc-text"> 背景知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E6%BC%94%E7%A4%BA"><span class="toc-number">1.0.0.3.</span> <span class="toc-text"> 视频演示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E5%AD%97%E8%AF%B4%E6%98%8E"><span class="toc-number">1.0.0.4.</span> <span class="toc-text"> 文字说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-number">1.0.0.5.</span> <span class="toc-text"> 成果展示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%AF%8D%E6%8E%A8%E8%8D%90"><span class="toc-number">1.0.0.6.</span> <span class="toc-text"> 关键词推荐</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://www.seyou.lol/posts/2024/03/fc385c23.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&text=StableDiffusion"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&title=StableDiffusion"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&is_video=false&description=StableDiffusion"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=StableDiffusion&body=Check out this article: https://www.seyou.lol/posts/2024/03/fc385c23.html"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&title=StableDiffusion"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&title=StableDiffusion"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&title=StableDiffusion"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&title=StableDiffusion"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://www.seyou.lol/posts/2024/03/fc385c23.html&name=StableDiffusion&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://www.seyou.lol/posts/2024/03/fc385c23.html&t=StableDiffusion"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left" style="margin-bottom: 0;">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Ming Yu Zhang
+
+  </div>
+
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/ZMY2023yu">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
