@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="自建v2ray教程很简单，整个教程分三步： 第一步：购买VPS服务器 第二步：一键部署VPS服务器 第三步：一键加速VPS服务器 （五合一的TCP网络加速脚本）  【前言】 v2ray的优势：v2ray支持的传输方式有很多，包括：普通TCP、HTTP伪装、WebSocket流量、普通mKCP、mKCP伪装FaceTime通话、mKCP伪装BT下载流量、mKCP伪装微信视频流量，不同的传输方式其效果">
+    <meta name="description" content="自建v2ray教程很简单，整个教程分三步： 第一步：购买VPS服务器  第二步：一键部署VPS服务器 第三步：一键加速VPS服务器 （五合一的TCP网络加速脚本）  【前言】 v2ray的优势：v2ray支持的传输方式有很多，包括：普通TCP、HTTP伪装、WebSocket流量、普通mKCP、mKCP伪装FaceTime通话、mKCP伪装BT下载流量、mKCP伪装微信视频流量，不同的传输方式其效">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自建V2ray服务器">
 <meta property="og:url" content="https://seyou.lol/posts/2024/03/645c4c54.html">
 <meta property="og:site_name" content="Seyou">
-<meta property="og:description" content="自建v2ray教程很简单，整个教程分三步： 第一步：购买VPS服务器 第二步：一键部署VPS服务器 第三步：一键加速VPS服务器 （五合一的TCP网络加速脚本）  【前言】 v2ray的优势：v2ray支持的传输方式有很多，包括：普通TCP、HTTP伪装、WebSocket流量、普通mKCP、mKCP伪装FaceTime通话、mKCP伪装BT下载流量、mKCP伪装微信视频流量，不同的传输方式其效果">
+<meta property="og:description" content="自建v2ray教程很简单，整个教程分三步： 第一步：购买VPS服务器  第二步：一键部署VPS服务器 第三步：一键加速VPS服务器 （五合一的TCP网络加速脚本）  【前言】 v2ray的优势：v2ray支持的传输方式有很多，包括：普通TCP、HTTP伪装、WebSocket流量、普通mKCP、mKCP伪装FaceTime通话、mKCP伪装BT下载流量、mKCP伪装微信视频流量，不同的传输方式其效">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.vultr.com/media/banners/banner_728x90.png">
 <meta property="og:image" content="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp100.png">
@@ -49,7 +49,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/12132898/70548727-04fa6680-1bae-11ea-99da-568af4fd6f5f.png">
 <meta property="article:published_time" content="2024-03-21T08:44:57.000Z">
 <meta property="article:modified_time" content="2024-03-21T08:46:47.299Z">
-<meta property="article:author" content="Ming Yu Zhang">
+<meta property="article:author" content="Seyou">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://www.vultr.com/media/banners/banner_728x90.png">
@@ -93,6 +93,13 @@
     
 	<!-- mathjax -->
 	
+  <!-- fancybox -->
+  
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    />
+  
 <meta name="generator" content="Hexo 7.0.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -107,19 +114,21 @@
         <!--
        --><li><a href="/">首页</a></li><!--
      --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     --><!--
        --><li><a href="/archives/">归档</a></li><!--
      --><!--
-       --><li><a target="_blank" rel="noopener" href="https://github.com/ZMY2023yu">项目</a></li><!--
-     --><!--
        --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/music/">音乐</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
      -->
       </ul>
     </span>
     <br/>
     <span id="actions">
       <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/posts/2024/03/c94c475f.html"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="下一篇" href="/posts/2024/03/535a1386.html"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -145,30 +154,30 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://seyou.lol/posts/2024/03/645c4c54.html&title=自建V2ray服务器"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://seyou.lol/posts/2024/03/645c4c54.html&title=自建V2ray服务器"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://seyou.lol/posts/2024/03/645c4c54.html&name=自建V2ray服务器&description=&lt;p&gt;&lt;strong&gt;自建v2ray教程很简单，整个教程分三步&lt;/strong&gt;：&lt;/p&gt;
-&lt;p&gt;第一步：购买VPS服务器&lt;/p&gt;
+&lt;p&gt;第一步：购买VPS服务器 &lt;/p&gt;
 &lt;p&gt;第二步：一键部署VPS服务器&lt;/p&gt;
 &lt;p&gt;第三步：一键加速VPS服务器 （五合一的TCP网络加速脚本）&lt;/p&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;【前言】&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;v2ray的优势&lt;/strong&gt;：v2ray支持的传输方式有很多，包括：普通TCP、HTTP伪装、WebSocket流量、普通mKCP、mKCP伪装FaceTime通话、mKCP伪装BT下载流量、mKCP伪装微信视频流量，不同的传输方式其效果会不同，有可能会遇到意想不到的效果哦！当然国内不同的地区、不同的网络环境，效果也会不同，所以具体可以自己进行测试。现在v2ray客户端也很多了，有windows、MAC、linux和安卓版。&lt;/p&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;第一步：购买VPS服务器&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;VPS服务器需要选择国外的，首选国际知名的vultr，速度不错、稳定且性价比高，按小时计费，能够随时开通和删除服务器，新服务器即是新ip。&lt;/p&gt;
-&lt;p&gt;vultr注册地址：&lt;a href=&#34;https://www.vultr.com/?ref=7048874&#34;&gt;https://www.vultr.com/?ref=7048874&lt;/a&gt; （vps最低2.5美元/月，vultr全球25个服务器位置可选，包括洛杉矶、韩国、新加坡、日本、德国、荷兰等。支持支付宝和paypal付款。）&lt;/p&gt;
+&lt;p&gt;vultr注册地址：&lt;a href=&#34;https://www.vultr.com/?ref=7048874&#34;&gt;https://www.vultr.com/?ref=7048874&lt;/a&gt; （vps最低2.5美元&amp;#x2F;月，vultr全球25个服务器位置可选，包括洛杉矶、韩国、新加坡、日本、德国、荷兰等。支持支付宝和paypal付款。） &lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.vultr.com/?ref=7048874&#34;&gt;&lt;img src=&#34;https://www.vultr.com/media/banners/banner_728x90.png&#34; width=&#34;728&#34; height=&#34;90&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;虽然是英文界面，但是现在的浏览器都有网页翻译功能，鼠标点击右键，选择网页翻译即可翻译成中文。&lt;/p&gt;
-&lt;p&gt;注册并邮件激活账号，充值后即可购买服务器。充值方式是支付宝或paypal，使用paypal有银行卡（包括信用卡）即可。paypal注册地址：&lt;a href=&#34;https://www.paypal.com&#34;&gt;https://www.paypal.com&lt;/a&gt; （paypal是国际知名的第三方支付服务商，注册一下账号，绑定银行卡即可购买国外商品）&lt;/p&gt;
-&lt;hr /&gt;
+&lt;p&gt;注册并邮件激活账号，充值后即可购买服务器。充值方式是支付宝或paypal，使用paypal有银行卡（包括信用卡）即可。paypal注册地址：&lt;a href=&#34;https://www.paypal.com/&#34;&gt;https://www.paypal.com&lt;/a&gt; （paypal是国际知名的第三方支付服务商，注册一下账号，绑定银行卡即可购买国外商品）&lt;/p&gt;
+&lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;注意：2.5美元套餐只提供ipv6 ip，一般的电脑用不了，所以建议选择3.5美元及以上的套餐。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;vultr实际上是折算成小时来计费的，比如服务器是5美元1个月，那么每小时收费为5/30/24=0.0069美元 会自动从账号中扣费，只要保证账号有钱即可。如果你部署的服务器实测后速度不理想，你可以把它删掉（destroy），重新换个地区的服务器来部署，方便且实用。因为新的服务器就是新的ip，所以当ip被墙时这个方法很有用。当ip被墙时，为了保证新开的服务器ip和原先的ip不一样，先开新服务器，开好后再删除旧服务器即可。在账号的Billing选项里可以看到账户余额。&lt;/p&gt;
+&lt;p&gt;vultr实际上是折算成小时来计费的，比如服务器是5美元1个月，那么每小时收费为5&amp;#x2F;30&amp;#x2F;24&amp;#x3D;0.0069美元 会自动从账号中扣费，只要保证账号有钱即可。如果你部署的服务器实测后速度不理想，你可以把它删掉（destroy），重新换个地区的服务器来部署，方便且实用。因为新的服务器就是新的ip，所以当ip被墙时这个方法很有用。当ip被墙时，为了保证新开的服务器ip和原先的ip不一样，先开新服务器，开好后再删除旧服务器即可。在账号的Billing选项里可以看到账户余额。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;账号充值如图&lt;/strong&gt;：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp100.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp101.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a data-fancybox=&#34;gallery&#34; data-src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp100.png&#34; data-caption=&#34;&#34;&gt;&lt;picture&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp100.png&#34;&gt;&lt;/picture&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a data-fancybox=&#34;gallery&#34; data-src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp101.png&#34; data-caption=&#34;&#34;&gt;&lt;picture&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp101.png&#34;&gt;&lt;/picture&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;vultr改版了，最新开通服务器步骤如图&lt;/strong&gt;：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new1.PNG&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a data-fancybox=&#34;gallery&#34; data-src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new1.PNG&#34; data-caption=&#34;&#34;&gt;&lt;picture&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new1.PNG&#34;&gt;&lt;/picture&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;选择“Cloud Compute”。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new2.PNG&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;选择“Regular Performance”。如果选择这个，在下面选择具体套餐的时候，最低是3.5美元/月（也要看服务器位置），流量是500GB/月；5美元是1T流量/月。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+&lt;p&gt;&lt;a data-fancybox=&#34;gallery&#34; data-src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new2.PNG&#34; data-caption=&#34;&#34;&gt;&lt;picture&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new2.PNG&#34;&gt;&lt;/picture&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;选择“Regular Performance”。如果选择这个，在下面选择具体套餐的时候，最低是3.5美元&amp;#x2F;月（也要看服务器位置），流量是500GB&amp;#x2F;月；5美元是1T流量&amp;#x2F;月。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://seyou.lol/posts/2024/03/645c4c54.html&t=自建V2ray服务器"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
@@ -192,7 +201,7 @@
 
     <div class="meta">
       <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Ming Yu Zhang</span>
+        <span class="p-name" itemprop="name">Seyou</span>
       </span>
       
     <div class="postdate">
@@ -207,109 +216,129 @@
 
       
 
+      
+        <div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-keyboard-o"></i>
+      <span class="post-meta-item-text">  本篇字数: </span>
+      <span class="post-count">3.6k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="fa fa-hourglass-half"></i>
+      <span class="post-meta-item-text">  阅读时长: </span>
+      <span class="post-count">13分</span>
+    </span>
+  </span>
+</div>
+      
     </div>
   </header>
   
 
   <div class="content e-content" itemprop="articleBody">
     <p><strong>自建v2ray教程很简单，整个教程分三步</strong>：</p>
-<p>第一步：购买VPS服务器</p>
+<p>第一步：购买VPS服务器 </p>
 <p>第二步：一键部署VPS服务器</p>
 <p>第三步：一键加速VPS服务器 （五合一的TCP网络加速脚本）</p>
-<hr />
+<hr>
 <p><strong>【前言】</strong></p>
 <p><strong>v2ray的优势</strong>：v2ray支持的传输方式有很多，包括：普通TCP、HTTP伪装、WebSocket流量、普通mKCP、mKCP伪装FaceTime通话、mKCP伪装BT下载流量、mKCP伪装微信视频流量，不同的传输方式其效果会不同，有可能会遇到意想不到的效果哦！当然国内不同的地区、不同的网络环境，效果也会不同，所以具体可以自己进行测试。现在v2ray客户端也很多了，有windows、MAC、linux和安卓版。</p>
-<hr />
+<hr>
 <p><strong>第一步：购买VPS服务器</strong></p>
 <p>VPS服务器需要选择国外的，首选国际知名的vultr，速度不错、稳定且性价比高，按小时计费，能够随时开通和删除服务器，新服务器即是新ip。</p>
-<p>vultr注册地址：<a target="_blank" rel="noopener" href="https://www.vultr.com/?ref=7048874">https://www.vultr.com/?ref=7048874</a> （vps最低2.5美元/月，vultr全球25个服务器位置可选，包括洛杉矶、韩国、新加坡、日本、德国、荷兰等。支持支付宝和paypal付款。）</p>
+<p>vultr注册地址：<a target="_blank" rel="noopener" href="https://www.vultr.com/?ref=7048874">https://www.vultr.com/?ref=7048874</a> （vps最低2.5美元&#x2F;月，vultr全球25个服务器位置可选，包括洛杉矶、韩国、新加坡、日本、德国、荷兰等。支持支付宝和paypal付款。） </p>
 <p><a target="_blank" rel="noopener" href="https://www.vultr.com/?ref=7048874"><img src="https://www.vultr.com/media/banners/banner_728x90.png" width="728" height="90"></a></p>
 <p>虽然是英文界面，但是现在的浏览器都有网页翻译功能，鼠标点击右键，选择网页翻译即可翻译成中文。</p>
-<p>注册并邮件激活账号，充值后即可购买服务器。充值方式是支付宝或paypal，使用paypal有银行卡（包括信用卡）即可。paypal注册地址：<a target="_blank" rel="noopener" href="https://www.paypal.com">https://www.paypal.com</a> （paypal是国际知名的第三方支付服务商，注册一下账号，绑定银行卡即可购买国外商品）</p>
-<hr />
+<p>注册并邮件激活账号，充值后即可购买服务器。充值方式是支付宝或paypal，使用paypal有银行卡（包括信用卡）即可。paypal注册地址：<a target="_blank" rel="noopener" href="https://www.paypal.com/">https://www.paypal.com</a> （paypal是国际知名的第三方支付服务商，注册一下账号，绑定银行卡即可购买国外商品）</p>
+<hr>
 <p><strong>注意：2.5美元套餐只提供ipv6 ip，一般的电脑用不了，所以建议选择3.5美元及以上的套餐。</strong></p>
-<p>vultr实际上是折算成小时来计费的，比如服务器是5美元1个月，那么每小时收费为5/30/24=0.0069美元 会自动从账号中扣费，只要保证账号有钱即可。如果你部署的服务器实测后速度不理想，你可以把它删掉（destroy），重新换个地区的服务器来部署，方便且实用。因为新的服务器就是新的ip，所以当ip被墙时这个方法很有用。当ip被墙时，为了保证新开的服务器ip和原先的ip不一样，先开新服务器，开好后再删除旧服务器即可。在账号的Billing选项里可以看到账户余额。</p>
+<p>vultr实际上是折算成小时来计费的，比如服务器是5美元1个月，那么每小时收费为5&#x2F;30&#x2F;24&#x3D;0.0069美元 会自动从账号中扣费，只要保证账号有钱即可。如果你部署的服务器实测后速度不理想，你可以把它删掉（destroy），重新换个地区的服务器来部署，方便且实用。因为新的服务器就是新的ip，所以当ip被墙时这个方法很有用。当ip被墙时，为了保证新开的服务器ip和原先的ip不一样，先开新服务器，开好后再删除旧服务器即可。在账号的Billing选项里可以看到账户余额。</p>
 <p><strong>账号充值如图</strong>：</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp100.png" alt="" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp101.png" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp100.png" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp100.png"></picture></a></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp101.png" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp101.png"></picture></a></p>
 <p><strong>vultr改版了，最新开通服务器步骤如图</strong>：</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new1.PNG" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new1.PNG" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new1.PNG"></picture></a></p>
 <p>选择“Cloud Compute”。</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new2.PNG" alt="" /></p>
-<p>选择“Regular Performance”。如果选择这个，在下面选择具体套餐的时候，最低是3.5美元/月（也要看服务器位置），流量是500GB/月；5美元是1T流量/月。</p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new2.PNG" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new2.PNG"></picture></a></p>
+<p>选择“Regular Performance”。如果选择这个，在下面选择具体套餐的时候，最低是3.5美元&#x2F;月（也要看服务器位置），流量是500GB&#x2F;月；5美元是1T流量&#x2F;月。</p>
 <span id="more"></span>
-<p>如果选择前面3个，在下面选择具体套餐的时候，最低是6美元/月，但6美元是2T流量/月。也就是，对流量需求较高的可以选择前面3个。</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new3.PNG" alt="" /></p>
-<p>选择服务器位置。不同的服务器位置速度会有所不同，有的服务器的最低价格会不同，一般纽约等位置的价格最低，有3.5美元/月的，可根据自己的需求来选择。</p>
+
+<p>如果选择前面3个，在下面选择具体套餐的时候，最低是6美元&#x2F;月，但6美元是2T流量&#x2F;月。也就是，对流量需求较高的可以选择前面3个。</p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new3.PNG" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new3.PNG"></picture></a></p>
+<p>选择服务器位置。不同的服务器位置速度会有所不同，有的服务器的最低价格会不同，一般纽约等位置的价格最低，有3.5美元&#x2F;月的，可根据自己的需求来选择。</p>
 <p>电信用户推荐洛杉矶服务器；联通、移动用户推荐韩国、洛杉矶服务器。其它位置也可以尝试。</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new4.PNG" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new4.PNG" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new4.PNG"></picture></a></p>
 <p><strong>点击图中的系统名字，会弹出具体系统版本，推荐Debain10 （不要选CentOS7！）</strong></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new5.PNG" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new5.PNG" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new5.PNG"></picture></a></p>
 <p>选择服务器套餐。根据自己的需求来选择，如果服务器位置定了，套餐不影响速度，影响流量和配置，一般用的人数少，选择低配置就够了。</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new6.PNG" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new6.PNG" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new6.PNG"></picture></a></p>
 <p>关闭自动备份，这个是收费的，可以关闭它。</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new7.PNG" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new7.PNG" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new7.PNG"></picture></a></p>
 <p>最后点击“Deploy Now”开始部署，等2~3分钟就差不多了。此时也会收到vultr官方发来的“Cloud Server Activated”邮件提醒。</p>
 <p><strong>完成购买后，找到系统的密码记下来，部署服务器时需要用到。vps系统的密码获取方法如下图：</strong></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/crp_up/pac%E6%95%99%E7%A8%8B05.png" alt="" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/Debian2.png" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/crp_up/pac教程05.png" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/crp_up/pac%E6%95%99%E7%A8%8B05.png"></picture></a></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/Debian2.png" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/Debian2.png"></picture></a></p>
 <p><strong>删掉服务器步骤如下图</strong>：</p>
 <p>删除服务器时，先开新的服务器后再删除旧服务器，这样可以保证新服务器的ip与旧ip不同。</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/de4.PNG" alt="" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/de2.PNG" alt="" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/de5.png" alt="" /></p>
-<hr />
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/de4.PNG" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/de4.PNG"></picture></a></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/de2.PNG" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/de2.PNG"></picture></a></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/de5.png" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/de5.png"></picture></a></p>
+<hr>
 <p><strong>第二步：部署VPS服务器</strong></p>
 <p>购买服务器后，需要部署一下。因为你买的是虚拟东西，而且又远在国外，我们需要一个叫Xshell的软件来远程部署。Xshell windows版下载地址：</p>
-<p><a target="_blank" rel="noopener" href="https://d2.freessr2.xyz/Xshell_setup_wm.exe">国外云盘1下载</a><br />
-<a target="_blank" rel="noopener" href="https://d.ssrfree4.xyz/Xshell_setup_wm.exe">国外云盘2下载</a></p>
-<p>如果你是Mac苹果电脑操作系统，更简单，无需下载xshell，系统可以直接连接VPS。直接打开Terminal终端，输入：ssh <a href="mailto:root@43.45.43.21">root@43.45.43.21</a>（将45.45.43.21换成你的IP），之后输入你的密码就可以登录了（输入密码的时候屏幕上不会有显示）</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/Mac.png" alt="" /></p>
+<p><a target="_blank" rel="noopener" href="https://d2.freessr2.xyz/Xshell_setup_wm.exe">国外云盘1下载</a><br><a target="_blank" rel="noopener" href="https://d.ssrfree4.xyz/Xshell_setup_wm.exe">国外云盘2下载</a></p>
+<p>如果你是Mac苹果电脑操作系统，更简单，无需下载xshell，系统可以直接连接VPS。直接打开Terminal终端，输入：ssh <a href="mailto:&#114;&#111;&#x6f;&#x74;&#64;&#x34;&#x33;&#46;&#52;&#x35;&#46;&#52;&#x33;&#x2e;&#50;&#x31;">&#114;&#111;&#x6f;&#x74;&#64;&#x34;&#x33;&#46;&#52;&#x35;&#46;&#52;&#x33;&#x2e;&#50;&#x31;</a>（将45.45.43.21换成你的IP），之后输入你的密码就可以登录了（输入密码的时候屏幕上不会有显示）</p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/Mac.png" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/Mac.png"></picture></a></p>
 <p>如果不能用Mac自带的终端连接的话，直接网上搜“Mac连接SSH的软件”，有很多，然后通过软件来连接vps服务器就行，具体操作方式参考windows xshell。Mac成功连接vps后剩下的操作和windows一样。</p>
-<hr />
+<hr>
 <p>部署教程：</p>
 <p>下载windows xshell软件并安装后，打开软件</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/xshell11.png" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/xshell11.png" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/xshell11.png"></picture></a></p>
 <p>选择文件，新建</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/xshell12.png" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/xshell12.png" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/xshell12.png"></picture></a></p>
 <p>随便取个名字，然后把你的服务器ip填上</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/xshell13.png" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/xshell13.png" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/xshell13.png"></picture></a></p>
 <p>连接国外ip即服务器时，软件会先后提醒你输入用户名和密码，用户名默认都是root，密码是你购买的服务器系统的密码。</p>
 <p><strong>如果xshell连不上服务器，没有弹出让你输入用户名和密码的输入框，表明你开到的ip是一个被墙的ip，遇到这种情况，重新开新的服务器，直到能用xshell连上为止，耐心点哦！如果同一个地区开了多台服务器还是不行的话，可以换其它地区。</strong></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/xshell14.png" alt="" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/xshell2.png" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/xshell14.png" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/xshell14.png"></picture></a></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/xshell2.png" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/ss/xshell2.png"></picture></a></p>
 <p>连接成功后，会出现如上图所示，之后就可以复制粘贴代码部署了。</p>
-<p><strong>Ubuntu 16+ / Debian 8+ 系统 v2ray一键部署管理脚本</strong>：</p>
+<p><strong>Ubuntu 16+ &#x2F; Debian 8+ 系统 v2ray一键部署管理脚本</strong>：</p>
 <p>安装命令：</p>
-<p>source &lt;(curl -sL <a target="_blank" rel="noopener" href="https://multi.netlify.app/v2ray.sh">https://multi.netlify.app/v2ray.sh</a>) --zh</p>
+<p>source &lt;(curl -sL <a target="_blank" rel="noopener" href="https://multi.netlify.app/v2ray.sh">https://multi.netlify.app/v2ray.sh</a>) –zh</p>
 <p>升级命令(保留配置文件更新)：</p>
 <p>source &lt;(curl -sL <a target="_blank" rel="noopener" href="https://multi.netlify.app/v2ray.sh">https://multi.netlify.app/v2ray.sh</a>) -k</p>
 <p>卸载命令：</p>
-<p>source &lt;(curl -sL <a target="_blank" rel="noopener" href="https://multi.netlify.app/v2ray.sh">https://multi.netlify.app/v2ray.sh</a>) --remove</p>
+<p>source &lt;(curl -sL <a target="_blank" rel="noopener" href="https://multi.netlify.app/v2ray.sh">https://multi.netlify.app/v2ray.sh</a>) –remove</p>
 <blockquote>
 <p>如果输入安装命令后提示curl: command not found，那是因为服务器系统没有自带curl命令，安装一下curl。</p>
 </blockquote>
 <blockquote>
-<p>CentOS系统安装curl命令：yum install -y curl</p>
+<p>CentOS系统安装curl命令：yum install -y curl   </p>
 </blockquote>
 <blockquote>
-<p>Debian/Ubuntu系统安装curl命令：apt-get install -y curl</p>
+<p>Debian&#x2F;Ubuntu系统安装curl命令：apt-get install -y curl</p>
 </blockquote>
 <blockquote>
-<p>安装完成后，输入v2ray可进入管理页面。脚本来自<a target="_blank" rel="noopener" href="https://github.com/Jrohy/multi-v2ray">Jrohy/multi-v2ray</a>。</p>
+<p>安装完成后，输入v2ray可进入管理页面。脚本来自<a target="_blank" rel="noopener" href="https://github.com/Jrohy/multi-v2ray">Jrohy&#x2F;multi-v2ray</a>。</p>
 </blockquote>
-<hr />
+<hr>
 <p><strong>脚本演示</strong></p>
 <p>复制上面安装命令代码到VPS服务器里，复制代码用鼠标右键的复制，然后在vps里面右键粘贴进去，因为ctrl+c和ctrl+v无效。接着输入数字1来安装。安装完成后，如果想修改、查看配置等，可以输入v2ray进行管理页面，不用重复安装脚本。</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/v2ray/v2ray-2-1.PNG" alt="" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/v2ray/v2ray-2-2.PNG" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/v2ray/v2ray-2-1.PNG" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/v2ray/v2ray-2-1.PNG"></picture></a></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/v2ray/v2ray-2-2.PNG" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/v2ray/v2ray-2-2.PNG"></picture></a></p>
 <p>安装速度很快，安装结束后默认有个kcp协议帐号，如果不想用kcp协议，可以输入v2ray管理页面来进行传输方式的更改。（推荐websocket协议）</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/v2ray/v2ray-2-3.PNG" alt="" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/v2ray/v2ray-2-4.PNG" alt="" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/v2ray-cs.png" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/v2ray/v2ray-2-3.PNG" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/v2ray/v2ray-2-3.PNG"></picture></a></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/v2ray/v2ray-2-4.PNG" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/PAC/v2ray/v2ray-2-4.PNG"></picture></a></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/v2ray-cs.png" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/v2ray-cs.png"></picture></a></p>
 <p><strong>注意：如果安装后提示“Failed to start V2Ray Service”，即v2ray无法启动成功，输入以下3条命令</strong>：</p>
 <blockquote>
-<p>sed -i “s/v2ray -config/v2ray run -config/g” /etc/systemd/system/v2ray.service.d/10-donot_touch_single_conf.conf</p>
+<p>sed -i “s&#x2F;v2ray -config&#x2F;v2ray run -config&#x2F;g” &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;v2ray.service.d&#x2F;10-donot_touch_single_conf.conf</p>
 </blockquote>
 <blockquote>
 <p>systemctl daemon-reload</p>
@@ -324,106 +353,142 @@
 <blockquote>
 <p>之后再重启下v2ray就可以了: 输入命令v2ray–数字1服务管理–数字3重启服务</p>
 </blockquote>
-<hr />
+<hr>
 <p><strong>如果选择的是CentOS系统，还需要关闭vps防火墙来开放端口，相关命令如下：</strong></p>
-<p><strong>查看防火墙状态命令</strong>：firewall-cmd --state</p>
+<p><strong>查看防火墙状态命令</strong>：firewall-cmd –state</p>
 <p><strong>停止firewall命令</strong>：systemctl stop firewalld.service</p>
 <p><strong>禁止firewall开机启动命令</strong>：systemctl disable firewalld.service</p>
-<hr />
+<hr>
 <p><strong>注意：账号无法使用，可能原因：客户端与服务端的设备系统时间相差过大。解决方法如下：</strong></p>
-<p><strong>1、一般国外的VPS的镜像都是默认的国外时区，使用起来不是很方便。可以把它修改成北京时间，就会方便很多。</strong><br />
-<strong>修改中国时区代码如下</strong>：</p>
-<p>\cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</p>
+<p><strong>1、一般国外的VPS的镜像都是默认的国外时区，使用起来不是很方便。可以把它修改成北京时间，就会方便很多。</strong><br><strong>修改中国时区代码如下</strong>：</p>
+<p>\cp -f &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia&#x2F;Shanghai &#x2F;etc&#x2F;localtime </p>
 <p><strong>2、利用NTP同步时间协议</strong></p>
 <p><strong>CentOS系统先安装NTP</strong>：yum install ntp ntpdate -y</p>
 <blockquote>
-<p>如果是Ubuntu/Debian系统执行下面2条命令来安装NTP</p>
+<p>如果是Ubuntu&#x2F;Debian系统执行下面2条命令来安装NTP</p>
 </blockquote>
 <blockquote>
 <p>apt-get update</p>
 </blockquote>
 <blockquote>
-<p>apt-get install ntp ntpdate -y</p>
+<p>apt-get install ntp ntpdate -y  </p>
 </blockquote>
 <p><strong>安装NTP后，按照顺序依次执行以下3条命令，分别是停止NTP服务、同步NTP时间、启动NTP服务</strong>：</p>
-<p>service ntpd stop</p>
-<p>ntpdate <a target="_blank" rel="noopener" href="http://us.pool.ntp.org">us.pool.ntp.org</a></p>
-<p>service ntpd start</p>
+<p>service ntpd stop  </p>
+<p>ntpdate us.pool.ntp.org </p>
+<p>service ntpd start </p>
 <p><strong>执行完成后，VPS上就是相对精确的时间设置了。很多依赖于系统时间的应用程序也就能正常工作了。注意：当vps重启后输入date来检查下时间，如果时间不是最新的，再执行以上3条命令即可。</strong></p>
 <blockquote>
 <p>除了通过NTP来同步时间以外，还可以手动修改vps系统时间，需要先修改中国时区，之后输入时间命令，格式（数字改为和自己电脑时间一致，误差30秒以内）：date -s “2020-2-02 19:14:00”</p>
 </blockquote>
-<hr />
+<hr>
 <p><strong>第三步：一键加速VPS服务器</strong></p>
-<p>五合一的TCP网络加速脚本，包括了BBR原版、BBR魔改版、暴力BBR魔改版、BBR plus（首选）、Lotsever(锐速)安装脚本。可用于KVMXen架构，不兼容OpenVZ（OVZ）。支持Centos 6+ / Debian 7+ / Ubuntu 14+，BBR魔改版不支持Debian 8。</p>
-<hr />
-<p>wget -N --no-check-certificate “<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh">https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh</a>”</p>
-<p>chmod +x <a target="_blank" rel="noopener" href="http://tcp.sh">tcp.sh</a></p>
-<p>./tcp.sh</p>
-<hr />
+<p>五合一的TCP网络加速脚本，包括了BBR原版、BBR魔改版、暴力BBR魔改版、BBR plus（首选）、Lotsever(锐速)安装脚本。可用于KVMXen架构，不兼容OpenVZ（OVZ）。支持Centos 6+ &#x2F; Debian 7+ &#x2F; Ubuntu 14+，BBR魔改版不支持Debian 8。</p>
+<hr>
+<p>wget -N –no-check-certificate “<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh">https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh</a>“</p>
+<p>chmod +x tcp.sh</p>
+<p>.&#x2F;tcp.sh</p>
+<hr>
 <blockquote>
-<p>如果提示 wget: command not found 的错误，这是你的系统精简的太干净了，wget都没有安装，所以需要安装wget。CentOS系统安装wget命令： yum install -y wget Debian/Ubuntu系统安装wget命令：apt-get install -y wget</p>
+<p>如果提示 wget: command not found 的错误，这是你的系统精简的太干净了，wget都没有安装，所以需要安装wget。CentOS系统安装wget命令： yum install -y wget Debian&#x2F;Ubuntu系统安装wget命令：apt-get install -y wget</p>
 </blockquote>
-<p>安装完成后，脚本管理命令为：./tcp.sh</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr1.jpg" alt="" /></p>
-<p>操作方法：先安装内核，重启vps让内核生效，再启动对应的加速即可。数字1的BBR/BBR魔改内核对应数字4、5、6的BBR加速、BBR魔改加速和暴力BBR魔改版加速。数字2的BBRplus内核对应数字7的BBRplus加速。数字3的锐速加速内核对应数字8的锐速加速。</p>
+<p>安装完成后，脚本管理命令为：.&#x2F;tcp.sh</p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr1.jpg" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr1.jpg"></picture></a></p>
+<p>操作方法：先安装内核，重启vps让内核生效，再启动对应的加速即可。数字1的BBR&#x2F;BBR魔改内核对应数字4、5、6的BBR加速、BBR魔改加速和暴力BBR魔改版加速。数字2的BBRplus内核对应数字7的BBRplus加速。数字3的锐速加速内核对应数字8的锐速加速。</p>
 <p>以安装暴力BBR魔改版加速为例，我们先安装对应的内核，输入数字1</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr2.jpg" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr2.jpg" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr2.jpg"></picture></a></p>
 <p>内核安装完成后，输入y进行重启，重启才能让内核生效</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr3.jpg" alt="" /></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr3.jpg" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr3.jpg"></picture></a></p>
 <p>重启完成后，输入数字6来启动暴力BBR魔改版加速</p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr4.jpg" alt="" /></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr5.jpg" alt="" /></p>
-<p>输入./tcp.sh查看最终是否启动成功。</p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr4.jpg" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr4.jpg"></picture></a></p>
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr5.jpg" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr5.jpg"></picture></a></p>
+<p>输入.&#x2F;tcp.sh查看最终是否启动成功。</p>
 <p>如果想换一个加速，输入数字9进行卸载加速，然后进行同样的操作，安装内核再安装对应内核的加速即可。</p>
 <p><strong>注意：如果在安装内核环节出现这样一张图，注意选择NO</strong></p>
-<p><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr6.jpg" alt="" /></p>
-<hr />
+<p><a data-fancybox="gallery" data-src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr6.jpg" data-caption=""><picture><img src="https://fastly.jsdelivr.net/gh/Alvin9999/pac2/vultr/newbbr6.jpg"></picture></a></p>
+<hr>
 <p>【v2ray客户端下载及使用方法】</p>
 <p><strong>客户端使用教程：<a target="_blank" rel="noopener" href="https://github.com/Alvin9999/new-pac/wiki/v2ray%E5%90%84%E5%B9%B3%E5%8F%B0%E5%9B%BE%E6%96%87%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B">v2ray各平台图文使用教程</a></strong></p>
 <p>浏览器代理设置成Socks(5) 127.0.0.1 和1080 即可通过v2ray代理上网。</p>
 <p>谷歌浏览器chrome可配合switchyomega插件来使用，下载插件：<a target="_blank" rel="noopener" href="https://github.com/atrandys/trojan/releases/download/1.0.0/SwitchyOmega_Chromium.crx">switchyomega</a></p>
-<p>安装插件，打开chrome，打开扩展程序，将下载的插件拖动到扩展程序页面，添加到扩展。<br />
-<img src="https://user-images.githubusercontent.com/12132898/70548725-0461d000-1bae-11ea-9d1e-4577e36ac46e.png" alt="20181116000534" /></p>
-<p>完成添加，会跳转到switchyomega页面，点跳过教程，然后点击proxy，如图填写，最后点击应用选项。<br />
-<img src="https://user-images.githubusercontent.com/12132898/70548727-04fa6680-1bae-11ea-99da-568af4fd6f5f.png" alt="20181116001438" /></p>
-<hr />
+<p>安装插件，打开chrome，打开扩展程序，将下载的插件拖动到扩展程序页面，添加到扩展。<br><a data-fancybox="gallery" data-src="https://user-images.githubusercontent.com/12132898/70548725-0461d000-1bae-11ea-9d1e-4577e36ac46e.png" data-caption="20181116000534"><picture><img src="https://user-images.githubusercontent.com/12132898/70548725-0461d000-1bae-11ea-9d1e-4577e36ac46e.png" alt="20181116000534"></picture></a></p>
+<p>完成添加，会跳转到switchyomega页面，点跳过教程，然后点击proxy，如图填写，最后点击应用选项。<br><a data-fancybox="gallery" data-src="https://user-images.githubusercontent.com/12132898/70548727-04fa6680-1bae-11ea-99da-568af4fd6f5f.png" data-caption="20181116001438"><picture><img src="https://user-images.githubusercontent.com/12132898/70548727-04fa6680-1bae-11ea-99da-568af4fd6f5f.png" alt="20181116001438"></picture></a></p>
+<hr>
 <p><strong>常见问题参考解决方法</strong>：</p>
 <p><strong>1、账号无法使用，可能原因一：客户端与服务端的设备系统时间相差过大。</strong></p>
-<p><strong>a、一般国外的VPS的镜像都是默认的国外时区，使用起来不是很方便。可以把它修改成北京时间，就会方便很多。</strong><br />
-<strong>修改中国时区代码如下</strong>：</p>
-<p>\cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</p>
+<p><strong>a、一般国外的VPS的镜像都是默认的国外时区，使用起来不是很方便。可以把它修改成北京时间，就会方便很多。</strong><br><strong>修改中国时区代码如下</strong>：</p>
+<p>\cp -f &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia&#x2F;Shanghai &#x2F;etc&#x2F;localtime </p>
 <p><strong>b、利用NTP同步时间协议</strong></p>
 <p><strong>CentOS系统先安装NTP</strong>：yum install ntp ntpdate -y</p>
 <blockquote>
-<p>如果是Ubuntu/Debian系统执行下面2条命令来安装NTP</p>
+<p>如果是Ubuntu&#x2F;Debian系统执行下面2条命令来安装NTP</p>
 </blockquote>
 <blockquote>
 <p>apt-get update</p>
 </blockquote>
 <blockquote>
-<p>apt-get install ntp ntpdate -y</p>
+<p>apt-get install ntp ntpdate -y  </p>
 </blockquote>
 <p><strong>安装NTP后，按照顺序依次执行以下3条命令，分别是停止NTP服务、同步NTP时间、启动NTP服务</strong>：</p>
-<p>service ntpd stop</p>
-<p>ntpdate <a target="_blank" rel="noopener" href="http://us.pool.ntp.org">us.pool.ntp.org</a></p>
-<p>service ntpd start</p>
+<p>service ntpd stop  </p>
+<p>ntpdate us.pool.ntp.org </p>
+<p>service ntpd start </p>
 <p><strong>执行完成后，VPS上就是相对精确的时间设置了。很多依赖于系统时间的应用程序也就能正常工作了。注意：当vps重启后输入date来检查下时间，如果时间不是最新的，再执行以上3条命令即可。</strong></p>
 <blockquote>
 <p>除了通过NTP来同步时间以外，还可以手动修改vps系统时间，需要先修改中国时区，之后输入时间命令，格式（数字改为和自己电脑时间一致，误差30秒以内）：date -s “2020-2-02 19:14:00”</p>
 </blockquote>
 <p><strong>2、账号无法使用，可能原因：vps防火墙端口没有放开或者本地电脑防火墙、杀毒软件阻挡代理软件。</strong></p>
 <p>关闭vps防火墙即可开放所有端口，本地电脑防火墙和杀毒软件手动关闭即可。</p>
-<p>查看防火墙状态命令：firewall-cmd --state</p>
+<p>查看防火墙状态命令：firewall-cmd –state  </p>
 <p>停止firewall命令：systemctl stop firewalld.service</p>
 <p>禁止firewall开机启动命令：systemctl disable firewalld.service</p>
 <p><strong>3、搭建的账号之前能用，突然不能用了，怎么解决？</strong></p>
 <p><strong>如果ip不能ping通，xshell不能直接连接vps服务器，说明ip被墙了，需要开新服务器换ip。</strong></p>
 <p><strong>如果ip能ping，xshell能直接连接vps服务器，说明ip没有被墙，多半是端口被封了，优先换端口。</strong></p>
 <p><strong>如果ip和端口都没问题，可以尝试来更换传输协议，比如Websocket、TCP、mKCP等，测试哪种协议最适合自己的网络环境。</strong></p>
-<hr />
-<p>有问题可以发邮件至海外邮箱kebi2014@gmail.com</p>
+<hr>
+<p>有问题可以发邮件至海外邮箱<a href="mailto:&#x6b;&#x65;&#x62;&#105;&#50;&#48;&#x31;&#52;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#109;">&#x6b;&#x65;&#x62;&#105;&#50;&#48;&#x31;&#52;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#109;</a></p>
 
+    <!-- 《添加版权声明 -->
+    
+      <!-- 《添加版权声明 -->
+
+
+<!-- #版权基础设定：0-关闭声明； 1-文章对应的md文件里有declare: true属性，才有版权声明； 2-所有文章均有版权声明 -->
+
+  <div class="declare" style="padding-left:2px;color: #1e90ff;font-size: 14px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: rgba(29,31,33,1);border:dotted aliceblue 1px; border-radius: 1%;">
+    <strong class="author" style="color: #eeeeee;">本文作者：</strong>
+    
+      Seyou
+    
+    <br>
+    <strong class="create-time" style="color: #eeeeee;">发布时间：</strong>
+    2024-03-21
+    <br>
+    <strong class="update-time" style="color: #eeeeee;">最后更新：</strong>
+    2024-03-21
+    <br>
+    <strong class="article-titles" style="color: #eeeeee;">本文标题：</strong>
+    自建V2ray服务器
+    <!-- <a href="https://seyou.lol/posts/2024/03/645c4c54.html" title="自建V2ray服务器" target="_blank"></a> -->
+    <br>
+    <strong class="article-url" style="color: #eeeeee;">本文链接：</strong>
+    <a href="https://seyou.lol/posts/2024/03/645c4c54.html" title="自建V2ray服务器" target="_blank">https://seyou.lol/posts/2024/03/645c4c54.html</a>
+    <br>
+    <strong class="copyright" style="color: #eeeeee;">版权声明：</strong>
+    <span>本作品采用</span>
+    <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议" style="color: #eeeeee;font-size: 13px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">CC BY-NC-ND 4.0</a>
+    <span>许可协议进行许可。转载请注明出处！</span>
+    
+    <div class="svgcc" style="margin-left: 81.1%;margin-top: -24.2%;position:absolute;clip:rect(25px 130px 150px 0px)">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" width="150px" height="150px"><path fill="#cccccc" d="M245.8 214.9l-33.2 17.3c-9.4-19.6-25.2-19.9-27.5-19.9-22.1 0-33.2 14.6-33.2 43.8 0 23.6 9.2 43.8 33.2 43.8 14.5 0 24.7-7.1 30.6-21.3l30.6 15.5c-6.2 11.5-25.7 39-65.1 39-22.6 0-74-10.3-74-77.1 0-58.7 43-77.1 72.6-77.1 30.7 0 52.7 12 66 35.9zm143.1 0l-32.8 17.3c-9.5-19.8-25.7-19.9-27.9-19.9-22.1 0-33.2 14.6-33.2 43.8 0 23.6 9.2 43.8 33.2 43.8 14.5 0 24.7-7.1 30.5-21.3l31 15.5c-2.1 3.8-21.4 39-65.1 39-22.7 0-74-9.9-74-77.1 0-58.7 43-77.1 72.6-77.1 30.7 0 52.6 12 65.6 35.9zM247.6 8.1C104.7 8.1 0 123.1 0 256.1c0 138.5 113.6 248 247.6 248 129.9 0 248.4-100.9 248.4-248 0-137.9-106.6-248-248.4-248zm.9 450.8c-112.5 0-203.7-93-203.7-202.8 0-105.4 85.4-203.3 203.7-203.3 112.5 0 202.8 89.5 202.8 203.3 0 121.7-99.7 202.8-202.8 202.8z"/></svg>
+    </div>
+  </div>
+
+<!-- 添加版权声明》 -->
+
+    
+    <!-- 添加版权声明》 -->
   </div>
 </article>
 
@@ -440,13 +505,13 @@
         
           <li><a href="/">首页</a></li>
         
-          <li><a href="/about/">关于</a></li>
-        
           <li><a href="/archives/">归档</a></li>
         
-          <li><a target="_blank" rel="noopener" href="https://github.com/ZMY2023yu">项目</a></li>
-        
           <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/music/">音乐</a></li>
+        
+          <li><a href="/about/">关于</a></li>
         
       </ul>
     </div>
@@ -466,30 +531,30 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://seyou.lol/posts/2024/03/645c4c54.html&title=自建V2ray服务器"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://seyou.lol/posts/2024/03/645c4c54.html&title=自建V2ray服务器"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://seyou.lol/posts/2024/03/645c4c54.html&name=自建V2ray服务器&description=&lt;p&gt;&lt;strong&gt;自建v2ray教程很简单，整个教程分三步&lt;/strong&gt;：&lt;/p&gt;
-&lt;p&gt;第一步：购买VPS服务器&lt;/p&gt;
+&lt;p&gt;第一步：购买VPS服务器 &lt;/p&gt;
 &lt;p&gt;第二步：一键部署VPS服务器&lt;/p&gt;
 &lt;p&gt;第三步：一键加速VPS服务器 （五合一的TCP网络加速脚本）&lt;/p&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;【前言】&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;v2ray的优势&lt;/strong&gt;：v2ray支持的传输方式有很多，包括：普通TCP、HTTP伪装、WebSocket流量、普通mKCP、mKCP伪装FaceTime通话、mKCP伪装BT下载流量、mKCP伪装微信视频流量，不同的传输方式其效果会不同，有可能会遇到意想不到的效果哦！当然国内不同的地区、不同的网络环境，效果也会不同，所以具体可以自己进行测试。现在v2ray客户端也很多了，有windows、MAC、linux和安卓版。&lt;/p&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;第一步：购买VPS服务器&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;VPS服务器需要选择国外的，首选国际知名的vultr，速度不错、稳定且性价比高，按小时计费，能够随时开通和删除服务器，新服务器即是新ip。&lt;/p&gt;
-&lt;p&gt;vultr注册地址：&lt;a href=&#34;https://www.vultr.com/?ref=7048874&#34;&gt;https://www.vultr.com/?ref=7048874&lt;/a&gt; （vps最低2.5美元/月，vultr全球25个服务器位置可选，包括洛杉矶、韩国、新加坡、日本、德国、荷兰等。支持支付宝和paypal付款。）&lt;/p&gt;
+&lt;p&gt;vultr注册地址：&lt;a href=&#34;https://www.vultr.com/?ref=7048874&#34;&gt;https://www.vultr.com/?ref=7048874&lt;/a&gt; （vps最低2.5美元&amp;#x2F;月，vultr全球25个服务器位置可选，包括洛杉矶、韩国、新加坡、日本、德国、荷兰等。支持支付宝和paypal付款。） &lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.vultr.com/?ref=7048874&#34;&gt;&lt;img src=&#34;https://www.vultr.com/media/banners/banner_728x90.png&#34; width=&#34;728&#34; height=&#34;90&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;虽然是英文界面，但是现在的浏览器都有网页翻译功能，鼠标点击右键，选择网页翻译即可翻译成中文。&lt;/p&gt;
-&lt;p&gt;注册并邮件激活账号，充值后即可购买服务器。充值方式是支付宝或paypal，使用paypal有银行卡（包括信用卡）即可。paypal注册地址：&lt;a href=&#34;https://www.paypal.com&#34;&gt;https://www.paypal.com&lt;/a&gt; （paypal是国际知名的第三方支付服务商，注册一下账号，绑定银行卡即可购买国外商品）&lt;/p&gt;
-&lt;hr /&gt;
+&lt;p&gt;注册并邮件激活账号，充值后即可购买服务器。充值方式是支付宝或paypal，使用paypal有银行卡（包括信用卡）即可。paypal注册地址：&lt;a href=&#34;https://www.paypal.com/&#34;&gt;https://www.paypal.com&lt;/a&gt; （paypal是国际知名的第三方支付服务商，注册一下账号，绑定银行卡即可购买国外商品）&lt;/p&gt;
+&lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;注意：2.5美元套餐只提供ipv6 ip，一般的电脑用不了，所以建议选择3.5美元及以上的套餐。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;vultr实际上是折算成小时来计费的，比如服务器是5美元1个月，那么每小时收费为5/30/24=0.0069美元 会自动从账号中扣费，只要保证账号有钱即可。如果你部署的服务器实测后速度不理想，你可以把它删掉（destroy），重新换个地区的服务器来部署，方便且实用。因为新的服务器就是新的ip，所以当ip被墙时这个方法很有用。当ip被墙时，为了保证新开的服务器ip和原先的ip不一样，先开新服务器，开好后再删除旧服务器即可。在账号的Billing选项里可以看到账户余额。&lt;/p&gt;
+&lt;p&gt;vultr实际上是折算成小时来计费的，比如服务器是5美元1个月，那么每小时收费为5&amp;#x2F;30&amp;#x2F;24&amp;#x3D;0.0069美元 会自动从账号中扣费，只要保证账号有钱即可。如果你部署的服务器实测后速度不理想，你可以把它删掉（destroy），重新换个地区的服务器来部署，方便且实用。因为新的服务器就是新的ip，所以当ip被墙时这个方法很有用。当ip被墙时，为了保证新开的服务器ip和原先的ip不一样，先开新服务器，开好后再删除旧服务器即可。在账号的Billing选项里可以看到账户余额。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;账号充值如图&lt;/strong&gt;：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp100.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp101.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a data-fancybox=&#34;gallery&#34; data-src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp100.png&#34; data-caption=&#34;&#34;&gt;&lt;picture&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp100.png&#34;&gt;&lt;/picture&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a data-fancybox=&#34;gallery&#34; data-src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp101.png&#34; data-caption=&#34;&#34;&gt;&lt;picture&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/pp101.png&#34;&gt;&lt;/picture&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;vultr改版了，最新开通服务器步骤如图&lt;/strong&gt;：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new1.PNG&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a data-fancybox=&#34;gallery&#34; data-src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new1.PNG&#34; data-caption=&#34;&#34;&gt;&lt;picture&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new1.PNG&#34;&gt;&lt;/picture&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;选择“Cloud Compute”。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new2.PNG&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;选择“Regular Performance”。如果选择这个，在下面选择具体套餐的时候，最低是3.5美元/月（也要看服务器位置），流量是500GB/月；5美元是1T流量/月。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+&lt;p&gt;&lt;a data-fancybox=&#34;gallery&#34; data-src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new2.PNG&#34; data-caption=&#34;&#34;&gt;&lt;picture&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/Alvin9999/pac2/softimag/new2.PNG&#34;&gt;&lt;/picture&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;选择“Regular Performance”。如果选择这个，在下面选择具体套餐的时候，最低是3.5美元&amp;#x2F;月（也要看服务器位置），流量是500GB&amp;#x2F;月；5美元是1T流量&amp;#x2F;月。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://seyou.lol/posts/2024/03/645c4c54.html&t=自建V2ray服务器"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
@@ -512,32 +577,32 @@
         
         
         2016-2024
-        Ming Yu Zhang
+        Seyou
       </div>
       <div class="footer-right">
         <nav>
           <ul>
-            <!--
-          --><li><a href="/">首页</a></li><!--
-        --><!--
-          --><li><a href="/about/">关于</a></li><!--
-        --><!--
-          --><li><a href="/archives/">归档</a></li><!--
-        --><!--
-          --><li><a target="_blank" rel="noopener" href="https://github.com/ZMY2023yu">项目</a></li><!--
-        --><!--
-          --><li><a href="/search/">搜索</a></li><!--
-        -->
+            
+              <li><a href="/">首页</a></li>
+            
+              <li><a href="/archives/">归档</a></li>
+            
+              <li><a href="/search/">搜索</a></li>
+            
+              <li><a href="/music/">音乐</a></li>
+            
+              <li><a href="/about/">关于</a></li>
+            
           </ul>
           <ul>
+            <!-- 不蒜子统计 -->
             
-              <!-- 不蒜子统计 -->
               <span id="busuanzi_container_site_pv">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" witth="10" height="10"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#c9cacc" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg> <span id="busuanzi_value_site_pv"></span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" witth="10" height="10"><path fill="#c9cacc" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg> <span id="busuanzi_value_site_pv"></span>
               </span>
               <span class="post-meta-divider">|</span>
               <span id="busuanzi_container_site_uv" style='display:none'>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width='10' height='10'><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#c9cacc" d="M224 16c-6.7 0-10.8-2.8-15.5-6.1C201.9 5.4 194 0 176 0c-30.5 0-52 43.7-66 89.4C62.7 98.1 32 112.2 32 128c0 14.3 25 27.1 64.6 35.9c-.4 4-.6 8-.6 12.1c0 17 3.3 33.2 9.3 48H45.4C38 224 32 230 32 237.4c0 1.7 .3 3.4 1 5l38.8 96.9C28.2 371.8 0 423.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7c0-58.5-28.2-110.4-71.7-143L415 242.4c.6-1.6 1-3.3 1-5c0-7.4-6-13.4-13.4-13.4H342.7c6-14.8 9.3-31 9.3-48c0-4.1-.2-8.1-.6-12.1C391 155.1 416 142.3 416 128c0-15.8-30.7-29.9-78-38.6C324 43.7 302.5 0 272 0c-18 0-25.9 5.4-32.5 9.9c-4.8 3.3-8.8 6.1-15.5 6.1zm56 208H267.6c-16.5 0-31.1-10.6-36.3-26.2c-2.3-7-12.2-7-14.5 0c-5.2 15.6-19.9 26.2-36.3 26.2H168c-22.1 0-40-17.9-40-40V169.6c28.2 4.1 61 6.4 96 6.4s67.8-2.3 96-6.4V184c0 22.1-17.9 40-40 40zm-88 96l16 32L176 480 128 288l64 32zm128-32L272 480 240 352l16-32 64-32z"/></svg> <span id="busuanzi_value_site_uv"></span>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width='10' height='10'><path fill="#c9cacc" d="M224 16c-6.7 0-10.8-2.8-15.5-6.1C201.9 5.4 194 0 176 0c-30.5 0-52 43.7-66 89.4C62.7 98.1 32 112.2 32 128c0 14.3 25 27.1 64.6 35.9c-.4 4-.6 8-.6 12.1c0 17 3.3 33.2 9.3 48H45.4C38 224 32 230 32 237.4c0 1.7 .3 3.4 1 5l38.8 96.9C28.2 371.8 0 423.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7c0-58.5-28.2-110.4-71.7-143L415 242.4c.6-1.6 1-3.3 1-5c0-7.4-6-13.4-13.4-13.4H342.7c6-14.8 9.3-31 9.3-48c0-4.1-.2-8.1-.6-12.1C391 155.1 416 142.3 416 128c0-15.8-30.7-29.9-78-38.6C324 43.7 302.5 0 272 0c-18 0-25.9 5.4-32.5 9.9c-4.8 3.3-8.8 6.1-15.5 6.1zm56 208H267.6c-16.5 0-31.1-10.6-36.3-26.2c-2.3-7-12.2-7-14.5 0c-5.2 15.6-19.9 26.2-36.3 26.2H168c-22.1 0-40-17.9-40-40V169.6c28.2 4.1 61 6.4 96 6.4s67.8-2.3 96-6.4V184c0 22.1-17.9 40-40 40zm-88 96l16 32L176 480 128 288l64 32zm128-32L272 480 240 352l16-32 64-32z"/></svg> <span id="busuanzi_value_site_uv"></span>
               </span>
             <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
             
@@ -601,6 +666,15 @@
 <!-- Disqus Comments -->
 
 <!-- utterances Comments -->
+
+<!-- FancyBox -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <script>
+    Fancybox.bind('[data-fancybox]', {
+      //
+    });      
+  </script>
 
 </body>
 </html>
