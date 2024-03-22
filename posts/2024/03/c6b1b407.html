@@ -13,13 +13,13 @@
 <meta property="og:site_name" content="Seyou">
 <meta property="og:description" content="Hexo-abbrlink插件使用 1.为了给Hexo博客生成简洁唯一且URL不变的链接，我使用了hexo-abbrlink插件：1npm install hexo-abbrlink --save  2.对Hexo根目录下_config.yml进行修改：12345678910111213# URL## Set your site url here.url: https:&#x2F;&#x2F;www.seyou.li">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://telegraph-image.pages.dev/file/a98e5bffdc6b8db65f82b.jpg">
+<meta property="og:image" content="https://img.gs/knrrcwdgdl/500x600,fit/https://telegraph-image.pages.dev/file/a98e5bffdc6b8db65f82b.jpg">
 <meta property="article:published_time" content="2024-03-21T08:39:40.000Z">
 <meta property="article:modified_time" content="2024-03-22T09:27:21.280Z">
 <meta property="article:author" content="Seyou">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://telegraph-image.pages.dev/file/a98e5bffdc6b8db65f82b.jpg">
+<meta name="twitter:image" content="https://img.gs/knrrcwdgdl/500x600,fit/https://telegraph-image.pages.dev/file/a98e5bffdc6b8db65f82b.jpg">
     
     
       
@@ -189,7 +189,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h1 id="Hexo-abbrlink插件使用"><a href="#Hexo-abbrlink插件使用" class="headerlink" title="Hexo-abbrlink插件使用"></a>Hexo-abbrlink插件使用</h1><p><a data-fancybox="gallery" data-src="https://telegraph-image.pages.dev/file/a98e5bffdc6b8db65f82b.jpg" data-caption="avatar"><picture><img src="https://telegraph-image.pages.dev/file/a98e5bffdc6b8db65f82b.jpg" alt="avatar"></picture></a></p>
+    <h1 id="Hexo-abbrlink插件使用"><a href="#Hexo-abbrlink插件使用" class="headerlink" title="Hexo-abbrlink插件使用"></a>Hexo-abbrlink插件使用</h1><p><a data-fancybox="gallery" data-src="https://img.gs/knrrcwdgdl/full,quality=high/https://telegraph-image.pages.dev/file/a98e5bffdc6b8db65f82b.jpg" data-caption="avatar"><picture><img src="https://img.gs/knrrcwdgdl/500x600,fit/https://telegraph-image.pages.dev/file/a98e5bffdc6b8db65f82b.jpg" alt="avatar"></picture></a></p>
 <h4 id="1-为了给Hexo博客生成简洁唯一且URL不变的链接，我使用了hexo-abbrlink插件："><a href="#1-为了给Hexo博客生成简洁唯一且URL不变的链接，我使用了hexo-abbrlink插件：" class="headerlink" title="1.为了给Hexo博客生成简洁唯一且URL不变的链接，我使用了hexo-abbrlink插件："></a>1.<strong>为了给Hexo博客生成简洁唯一且URL不变的链接，我使用了hexo-abbrlink插件：</strong></h4><div class="highlight-wrap" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure></div>
 
 <h4 id="2-对Hexo根目录下-config-yml进行修改："><a href="#2-对Hexo根目录下-config-yml进行修改：" class="headerlink" title="2.对Hexo根目录下_config.yml进行修改："></a>2.<strong>对Hexo根目录下_config.yml进行修改：</strong></h4><div class="highlight-wrap" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here.</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://www.seyou.life</span></span><br><span class="line"><span class="comment"># permalink: :year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">posts/:year/:month/:abbrlink.html</span>  <span class="comment"># 也可以直接写 posts/:abbrlink.html</span></span><br><span class="line"><span class="comment"># abbrlink config</span></span><br><span class="line"><span class="attr">abbrlink:</span></span><br><span class="line">  <span class="attr">alg:</span> <span class="string">crc32</span>      <span class="comment">#support crc16(default) and crc32</span></span><br><span class="line">  <span class="attr">rep:</span> <span class="string">hex</span>        <span class="comment">#support dec(default) and hex</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure></div>
