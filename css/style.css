@@ -1688,7 +1688,7 @@ code {
   opacity: 1;
 }
 .highlight .btn-copy {
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   position: absolute;
   right: 15px;
   opacity: 0;
@@ -1709,9 +1709,9 @@ code {
 }
 .highlight td.gutter {
   text-align: right;
-  opacity: 0.2;
+  color: #06aceb;
 }
-.highlight .line {
+.line {
   height: 22px;
 }
 #header-post #actions {
