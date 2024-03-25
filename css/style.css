@@ -488,6 +488,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
+body.home {
+  background-image: url("https://jihulab.com/seyou/vsave/-/raw/main/videos/2024/03/25_11_7_13_1302542.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed; /* 固定背景图片 */
+  backdrop-filter: blur(2px);
+}
 .content {
   position: relative;
   display: flex;
