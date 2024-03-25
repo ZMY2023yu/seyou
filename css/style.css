@@ -1231,6 +1231,9 @@ article .content .caption {
   .article-category:before {
     content: "|";
   }
+  #banquan {
+    display: none;
+  }
 }
 #archive .post-year {
   list-style-type: none;
