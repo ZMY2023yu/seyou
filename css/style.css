@@ -875,6 +875,9 @@ body.home {
   #header-post {
     display: none;
   }
+  #banquan {
+    display: none;
+  }
 }
 @media screen and (max-width: 900px) {
   #header-post #menu-icon {
@@ -1230,9 +1233,6 @@ article .content .caption {
   .article-tag:before,
   .article-category:before {
     content: "|";
-  }
-  #banquan {
-    display: none;
   }
 }
 #archive .post-year {
