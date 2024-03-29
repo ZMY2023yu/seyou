@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="一、联合索引第一个字段使用范围查找不会使用索引123456# name &gt; &lt;user_name&gt;为范围查找EXPLAIN SELECT * FROM &lt;table_name&gt; WHERE name &gt; &lt;user_name&gt; AND age &#x3D; &lt;user_age&gt; AND position &#x3D; &lt;user_position&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL索引优化">
+<meta property="og:url" content="https://seyou.lol/posts/2024/03/b542e386.html">
+<meta property="og:site_name" content="Seyou">
+<meta property="og:description" content="一、联合索引第一个字段使用范围查找不会使用索引123456# name &gt; &lt;user_name&gt;为范围查找EXPLAIN SELECT * FROM &lt;table_name&gt; WHERE name &gt; &lt;user_name&gt; AND age &#x3D; &lt;user_age&gt; AND position &#x3D; &lt;user_position&amp;g">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.gs/knrrcwdgdl/500x600,fit/https://img.seyou.love/api/file/d64853e934f12e87e6b9f.jpg">
+<meta property="article:published_time" content="2024-03-29T10:02:12.000Z">
+<meta property="article:modified_time" content="2024-03-29T11:39:36.638Z">
+<meta property="article:author" content="Seyou">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.gs/knrrcwdgdl/500x600,fit/https://img.seyou.love/api/file/d64853e934f12e87e6b9f.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>MySQL索引优化</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="Seyou" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+  <!-- fancybox 图片工具-->
+  
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    />
+  
+  <!-- 赫蹏 文字工具-->
+  
+    <link rel="stylesheet" href="//unpkg.com/heti/umd/heti.min.css">
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body class="max-width mx-auto px3  ltr ">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/posts/2024/03/b62adf32.html"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://seyou.lol/posts/2024/03/b542e386.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://seyou.lol/posts/2024/03/b542e386.html&text=MySQL索引优化"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://seyou.lol/posts/2024/03/b542e386.html&title=MySQL索引优化"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://seyou.lol/posts/2024/03/b542e386.html&is_video=false&description=MySQL索引优化"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MySQL索引优化&body=Check out this article: https://seyou.lol/posts/2024/03/b542e386.html"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://seyou.lol/posts/2024/03/b542e386.html&title=MySQL索引优化"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://seyou.lol/posts/2024/03/b542e386.html&title=MySQL索引优化"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://seyou.lol/posts/2024/03/b542e386.html&title=MySQL索引优化"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://seyou.lol/posts/2024/03/b542e386.html&title=MySQL索引优化"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://seyou.lol/posts/2024/03/b542e386.html&name=MySQL索引优化&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://seyou.lol/posts/2024/03/b542e386.html&t=MySQL索引优化"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%AD%97%E6%AE%B5%E4%BD%BF%E7%94%A8%E8%8C%83%E5%9B%B4%E6%9F%A5%E6%89%BE%E4%B8%8D%E4%BC%9A%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95"><span class="toc-number">1.</span> <span class="toc-text">一、联合索引第一个字段使用范围查找不会使用索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81in%E5%92%8Cor%E5%9C%A8%E8%A1%A8%E6%95%B0%E6%8D%AE%E9%87%8F%E6%AF%94%E8%BE%83%E5%A4%A7%E6%97%B6%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95%EF%BC%8C%E5%90%A6%E5%88%99%E4%BD%BF%E7%94%A8%E5%85%A8%E8%A1%A8%E6%89%AB%E6%8F%8F"><span class="toc-number">2.</span> <span class="toc-text">二、in和or在表数据量比较大时使用索引，否则使用全表扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81like-example-%E4%B8%80%E8%88%AC%E6%83%85%E5%86%B5%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95"><span class="toc-number">3.</span> <span class="toc-text">三、like example% 一般情况使用索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">四、MySQL索引优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Order-By%E4%B8%8EGroup-By"><span class="toc-number">5.</span> <span class="toc-text">五、Order By与Group By</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AF%B9%E4%BA%8E%E6%8E%92%E5%BA%8F%E6%9D%A5%E8%AF%B4%EF%BC%8C%E5%A4%9A%E4%B8%AA%E7%9B%B8%E7%AD%89%E6%9D%A1%E4%BB%B6%E4%B9%9F%E6%98%AF%E8%8C%83%E5%9B%B4%E6%9F%A5%E8%AF%A2%EF%BC%8C%E4%BD%BF%E7%94%A8Extra-%E4%B8%BAUsing-filesort%E3%80%82"><span class="toc-number">5.1.</span> <span class="toc-text">1.对于排序来说，多个相等条件也是范围查询，使用Extra 为Using filesort。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96"><span class="toc-number">5.2.</span> <span class="toc-text">2.可以使用覆盖索引优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">七、优化总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL%E4%BC%98%E5%8C%96%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-number">6.1.</span> <span class="toc-text">MySQL优化小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Using-filesort%E6%96%87%E4%BB%B6%E6%8E%92%E5%BA%8F%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="toc-number">6.2.</span> <span class="toc-text">Using filesort文件排序原理：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE"><span class="toc-number">7.</span> <span class="toc-text">数据</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        MySQL索引优化
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Seyou</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-03-29T10:02:12.000Z" class="dt-published" itemprop="datePublished">2024-03-29</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/MySQL/" rel="tag">MySQL</a>
+    </div>
+
+
+      <!-- 字数统计 -->
+      
+        <div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-keyboard-o"></i>
+      <span class="post-meta-item-text">  本篇字数: </span>
+      <span class="post-count">1.7k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="fa fa-hourglass-half"></i>
+      <span class="post-meta-item-text">  阅读时长: </span>
+      <span class="post-count">6分</span>
+    </span>
+  </span>
+</div>
+      
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    
+      <!-- 添加诗歌 -->
+
+<!-- #版权基础设定：0-关闭声明； 1-文章对应的md文件里有heti: true属性； 2-所有文章均有 -->
+
+  <div class="h-entry heti">
+    <p><a data-fancybox="gallery" data-src="https://img.gs/knrrcwdgdl/full,quality=high/https://img.seyou.love/api/file/d64853e934f12e87e6b9f.jpg" data-caption="2024-3-29"><picture><img src="https://img.gs/knrrcwdgdl/500x600,fit/https://img.seyou.love/api/file/d64853e934f12e87e6b9f.jpg" alt="2024-3-29"></picture></a></p>
+<h2 id="一、联合索引第一个字段使用范围查找不会使用索引"><a href="#一、联合索引第一个字段使用范围查找不会使用索引" class="headerlink" title="一、联合索引第一个字段使用范围查找不会使用索引"></a>一、联合索引第一个字段使用范围查找不会使用索引</h2><div class="highlight-wrap" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># name <span class="operator">&gt;</span> <span class="operator">&lt;</span>user_name<span class="operator">&gt;</span>为范围查找</span><br><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="operator">&lt;</span>table_name<span class="operator">&gt;</span> <span class="keyword">WHERE</span> name <span class="operator">&gt;</span> <span class="operator">&lt;</span>user_name<span class="operator">&gt;</span> <span class="keyword">AND</span> age <span class="operator">=</span> <span class="operator">&lt;</span>user_age<span class="operator">&gt;</span> <span class="keyword">AND</span> position <span class="operator">=</span> <span class="operator">&lt;</span>user_position<span class="operator">&gt;</span>;</span><br><span class="line"># 强制使用索引</span><br><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="operator">&lt;</span>table_name<span class="operator">&gt;</span> force index(<span class="operator">&lt;</span>user_name<span class="operator">&gt;</span>,<span class="operator">&lt;</span>user_age<span class="operator">&gt;</span>,<span class="operator">&lt;</span>user_position<span class="operator">&gt;</span>) <span class="keyword">WHERE</span> name <span class="operator">&gt;</span> <span class="operator">&lt;</span>user_name<span class="operator">&gt;</span> <span class="keyword">AND</span> age <span class="operator">=</span> <span class="operator">&lt;</span>user_age<span class="operator">&gt;</span> <span class="keyword">AND</span> position <span class="operator">=</span> <span class="operator">&lt;</span>user_position<span class="operator">&gt;</span>;</span><br><span class="line"># 总结：强制使用索引让联合索引的范围查找使用索引，<span class="keyword">rows</span>减少，但查找效率未必比全表扫描高，因为回表效率不高</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="二、in和or在表数据量比较大时使用索引，否则使用全表扫描"><a href="#二、in和or在表数据量比较大时使用索引，否则使用全表扫描" class="headerlink" title="二、in和or在表数据量比较大时使用索引，否则使用全表扫描"></a>二、in和or在表数据量比较大时使用索引，否则使用全表扫描</h2><div class="highlight-wrap" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="operator">&lt;</span>table_name<span class="operator">&gt;</span> <span class="keyword">WHERE</span> name <span class="keyword">in</span> (<span class="operator">&lt;</span>user_name1<span class="operator">&gt;</span>,<span class="operator">&lt;</span>user_name2<span class="operator">&gt;</span>,<span class="operator">&lt;</span>user_name3<span class="operator">&gt;</span>) <span class="keyword">AND</span> age <span class="operator">=</span> <span class="operator">&lt;</span>user_age<span class="operator">&gt;</span> <span class="keyword">AND</span> position<span class="operator">=</span><span class="operator">&lt;</span>user_position<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="operator">&lt;</span>table_name<span class="operator">&gt;</span> <span class="keyword">WHERE</span> (name<span class="operator">=</span><span class="operator">&lt;</span>user_name1<span class="operator">&gt;</span> <span class="keyword">or</span> name<span class="operator">=</span><span class="operator">&lt;</span>user_name2<span class="operator">&gt;</span>) <span class="keyword">AND</span> age <span class="operator">=</span> <span class="operator">&lt;</span>user_age<span class="operator">&gt;</span> <span class="keyword">AND</span> position<span class="operator">=</span><span class="operator">&lt;</span>user_position<span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="三、like-example-一般情况使用索引"><a href="#三、like-example-一般情况使用索引" class="headerlink" title="三、like example% 一般情况使用索引"></a>三、like example% 一般情况使用索引</h2><div class="highlight-wrap" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="operator">&lt;</span>table_name<span class="operator">&gt;</span> <span class="keyword">WHERE</span> name <span class="keyword">like</span> <span class="operator">&lt;</span>user_name<span class="operator">%</span><span class="operator">&gt;</span> <span class="keyword">AND</span> age <span class="operator">=</span> <span class="operator">&lt;</span>user_age<span class="operator">&gt;</span> <span class="keyword">AND</span> position <span class="operator">=</span><span class="operator">&lt;</span>user_position<span class="operator">&gt;</span>;</span><br><span class="line"># 索引下推（Index <span class="keyword">Condition</span> Pushdown，ICP），辅助的联合索引(name,age,position)在索引遍历过程中，对索引中包含的所有字段先做判断，过滤掉不符合条件的记录之后再回表，可以有效的减少回表次数。</span><br><span class="line"># 遍历时同时判断字段age和position是否包含<span class="operator">&lt;</span>user_name<span class="operator">%</span><span class="operator">&gt;</span>，判断完在回表。</span><br><span class="line"># 索引下推会减少回表次数，对于innodb引擎的表索引下推只能用于二级索引，innodb的主键索引（聚簇索引）树叶子节点上保存的是全行数据，所以这个时候索引下推并不会起到减少查询全行数据的效果。</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="四、MySQL索引优化"><a href="#四、MySQL索引优化" class="headerlink" title="四、MySQL索引优化"></a>四、MySQL索引优化</h2><p>使用name索引需要遍历name字段联合索引树，然后还需要根据遍历出来的主键值去主键索引树里再去查出最终数据，成本比全表扫描还高，可以用覆盖索引优化，这样只需要遍历name字段的联合索引树就能拿到所有结果。</p>
+<div class="highlight-wrap" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="operator">&lt;</span>user_table<span class="operator">&gt;</span> <span class="keyword">where</span> name <span class="operator">&gt;</span> <span class="operator">&lt;</span>user_name<span class="operator">&gt;</span> ;</span><br><span class="line"># 覆盖索引</span><br><span class="line">EXPLAIN <span class="keyword">select</span> name,age,position <span class="keyword">from</span> <span class="operator">&lt;</span>user_table<span class="operator">&gt;</span> <span class="keyword">where</span> name <span class="operator">&gt;</span> <span class="operator">&lt;</span>user_name<span class="operator">&gt;</span> ;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="五、Order-By与Group-By"><a href="#五、Order-By与Group-By" class="headerlink" title="五、Order By与Group By"></a>五、Order By与Group By</h2><h3 id="1-对于排序来说，多个相等条件也是范围查询，使用Extra-为Using-filesort。"><a href="#1-对于排序来说，多个相等条件也是范围查询，使用Extra-为Using-filesort。" class="headerlink" title="1.对于排序来说，多个相等条件也是范围查询，使用Extra 为Using filesort。"></a>1.对于排序来说，多个相等条件也是范围查询，使用Extra 为Using filesort。</h3><div class="highlight-wrap" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAN <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="operator">&lt;</span>user_table<span class="operator">&gt;</span> <span class="keyword">where</span> name <span class="keyword">in</span>(<span class="operator">&lt;</span>user_name1<span class="operator">&gt;</span>,<span class="operator">&lt;</span>user_name2<span class="operator">&gt;</span>) <span class="keyword">order</span> <span class="keyword">by</span> age,position;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="2-可以使用覆盖索引优化"><a href="#2-可以使用覆盖索引优化" class="headerlink" title="2.可以使用覆盖索引优化"></a>2.可以使用覆盖索引优化</h3><h2 id="七、优化总结"><a href="#七、优化总结" class="headerlink" title="七、优化总结"></a>七、优化总结</h2><h3 id="MySQL优化小结："><a href="#MySQL优化小结：" class="headerlink" title="MySQL优化小结："></a>MySQL优化小结：</h3><ol>
+<li>MySQL有<strong>filesort</strong>和<strong>index</strong>两种排序方式，Using index是指MySQL扫描索引本身完成排序。index<br>效率高，filesort效率低。</li>
+<li>order by满足两种情况会使用Using index。<ol>
+<li>order by语句使用<strong>索引最左前列</strong>。</li>
+<li>使用where子句与order by子句条件列组合满足使用<strong>索引最左前列</strong>。</li>
+</ol>
+</li>
+<li>尽量在<strong>索引列</strong>上完成排序，遵循索引建立（索引创建的顺序）时的<strong>最左前缀法则</strong>。</li>
+<li>如果order by的条件不在索引列上，就会产生Using filesort。</li>
+<li>能用<strong>覆盖索引</strong>尽量用覆盖索引。</li>
+<li>group by与order by很类似，其实质是<strong>先排序后分组</strong>，遵照索引创建顺序的最左前缀法则。对于group<br>by的优化如果不需要排序的可以加上<strong>order by nul</strong>l禁止排序。注意，where高于having，能写在where中<br>的限定条件就不要去having限定了。</li>
+</ol>
+<blockquote>
+<p>[!CAUTION]</p>
+<h3 id="Using-filesort文件排序原理："><a href="#Using-filesort文件排序原理：" class="headerlink" title="Using filesort文件排序原理："></a>Using filesort文件排序原理：</h3><ul>
+<li><strong>单路排序</strong>：是一次性取出满足条件行的所有字段，然后在sort buffer中进行排序；用trace工具可<br>以看到<strong>sort_mode</strong>信息里显示**&lt; sort_key, additional_fields &gt;<strong>或</strong>&lt; sort_key,packed_additional_fields &gt;**。</li>
+<li><strong>双路排序</strong>（又叫回表排序模式）：是首先根据相应的条件取出相应的排序字段和可以直接定位行<br>数据的行 ID，然后在 sort buffer 中进行排序，排序完后需要再次取回其它需要的字段；<strong>sort_mode</strong>信息里显示**&lt; sort_key, rowid &gt;**。</li>
+</ul>
+<p>MySQL 通过比较系统变量 <strong>max_length_for_sort_data</strong>(默认1024字节) 的大小和需要查询的字段总大小来<br>判断使用哪种排序模式。</p>
+<ul>
+<li>如果 字段的总长度小于max_length_for_sort_data ，那么使用 单路排序模式；</li>
+<li>如果 字段的总长度大于max_length_for_sort_data ，那么使用 双路排序模∙式。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>[!NOTE]</p>
+<div class="highlight-wrap" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="operator">&lt;</span>user_table<span class="operator">&gt;</span> <span class="keyword">where</span> name <span class="operator">=</span> <span class="operator">&lt;</span>user_name<span class="operator">&gt;</span> <span class="keyword">order</span> <span class="keyword">by</span> position;</span><br></pre></td></tr></table></figure></div>
+
+<p>单路排序流程：</p>
+<ol>
+<li>从索引name找到第一个满足 name &#x3D; <user_name> 条件的主键 id</li>
+<li>根据主键 id 取出整行，取出所有字段的值，存入 sort_buffer 中</li>
+<li>从索引name找到下一个满足 name &#x3D; <user_name> 条件的主键 id</li>
+<li>重复步骤 2、3 直到不满足 name &#x3D; <user_name></li>
+<li>对 sort_buffer 中的数据按照字段 position 进行排序</li>
+</ol>
+<p>双路排序流程：</p>
+<ol>
+<li>从索引 name 找到第一个满足 name &#x3D; <user_name> 的主键id</li>
+<li>根据主键 id 取出整行，把排序字段 position 和主键 id 这两个字段放到 sort buffer 中</li>
+<li>从索引 name 取下一个满足 name &#x3D;<user_name> 记录的主键 id</li>
+<li>重复 2、3 直到不满足 name &#x3D; <user_name></li>
+<li>对 sort_buffer 中的字段 position 和主键 id 按照字段 position 进行排序</li>
+<li>遍历排序好的 id 和字段 position，按照 id 的值回到原表中取出 所有字段的值返回给客户端</li>
+</ol>
+<p>如果 MySQL 排序内存 sort_buffer 配置的比较小并且没有条件继续增加了，可以适当把max_length_for_sort_data 配置小点，让优化器选择使用双路排序算法，可以在sort_buffer 中一次排序更多的行，只是需要再根据主键回到原表取数据。<br>如果 MySQL 排序内存有条件可以配置比较大，可以适当增大 max_length_for_sort_data 的值，让优化器<br>优先选择全字段排序(单路排序)，把需要的字段放到 sort_buffer 中，这样排序后就会直接从内存里返回查询结果了。<br>所以，MySQL通过 max_length_for_sort_data 这个参数来控制排序，在不同场景使用不同的排序模式，<br>从而提升排序效率。</p>
+<p>如果全部使用sort_buffer内存排序一般情况下效率会高于磁盘文件排序，但不能因为这个就随便增<br>大sort_buffer(默认1M)，mysql很多参数设置都是做过优化的，不可轻易调整。</p>
+</blockquote>
+<blockquote>
+<p>[!TIP]</p>
+<p><strong>索引设计原则</strong></p>
+<p>1、代码先行，索引后上</p>
+<p>2、联合索引尽量覆盖条件</p>
+<p>4、长字符串我们可以采用前缀索引</p>
+<p>5、where与order by冲突时优先where</p>
+<p>6、基于慢SQL查询做优化（慢SQL查询：把耗时较长的SQL语句写入文件中，方便优化，但是消耗性能）</p>
+</blockquote>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Describe</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>int（11）</td>
+<td>NOT NULL AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar(24)</td>
+<td>NOT NULL DEFAULT ‘ ’</td>
+</tr>
+<tr>
+<td>age</td>
+<td>int（11）</td>
+<td>NOT NULL DEFAULT ‘0’</td>
+</tr>
+<tr>
+<td>position</td>
+<td>varchar(20)</td>
+<td>NOT NULL DEFAULT ‘ ’</td>
+</tr>
+<tr>
+<td>hire_time</td>
+<td>timestamp</td>
+<td>NOT NULL DEFAULT CURRENT_TIMESTAMP</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>键</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PRIMARY KEY</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>KEY</td>
+<td>idx_name_age_position<code> (</code>name<code>,</code>age<code>,</code>position&#96;) USING BTREE</td>
+</tr>
+<tr>
+<td>AUTO_INCREMENT</td>
+<td>1</td>
+</tr>
+<tr>
+<td>ENGINE</td>
+<td>InnoDB</td>
+</tr>
+<tr>
+<td>CHARSET</td>
+<td>utf8</td>
+</tr>
+</tbody></table>
+
+  </div>
+
+
+    
+    <!-- 添加版权声明 -->
+    
+      
+  <div class="declare" style="padding-left:2px;color: #1e90ff;font-size: 14px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: rgba(29,31,33,1);border:dotted aliceblue 1px; border-radius: 1%;">
+    <strong class="author" style="color: #eeeeee;">本文作者：</strong>
+    
+      Seyou
+    
+    <br>
+    <strong class="create-time" style="color: #eeeeee;">发布时间：</strong>
+    2024-03-29
+    <br>
+    <strong class="update-time" style="color: #eeeeee;">最后更新：</strong>
+    2024-03-29
+    <br>
+    <strong class="article-titles" style="color: #eeeeee;">本文标题：</strong>
+    MySQL索引优化
+    <!-- <a href="https://seyou.lol/posts/2024/03/b542e386.html" title="MySQL索引优化" target="_blank"></a> -->
+    <br>
+    <strong class="article-url" style="color: #eeeeee;">本文链接：</strong>
+    <a href="https://seyou.lol/posts/2024/03/b542e386.html" title="MySQL索引优化" target="_blank">https://seyou.lol/posts/2024/03/b542e386.html</a>
+    <br>
+    <strong class="copyright" style="color: #eeeeee;">版权声明：</strong>
+    <span>本作品采用</span>
+    <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议" style="color: #eeeeee;font-size: 13px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">CC BY-NC-ND 4.0</a>
+    <span>许可协议进行许可。转载请注明出处！</span>
+    
+    <div class="svgcc" style="margin-left: 81.1%; margin-top: -24.2%; position:absolute; clip:rect(25px 130px 150px 0px) ">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" width="150px" height="150px" id="banquan"><path fill="#cccccc" d="M245.8 214.9l-33.2 17.3c-9.4-19.6-25.2-19.9-27.5-19.9-22.1 0-33.2 14.6-33.2 43.8 0 23.6 9.2 43.8 33.2 43.8 14.5 0 24.7-7.1 30.6-21.3l30.6 15.5c-6.2 11.5-25.7 39-65.1 39-22.6 0-74-10.3-74-77.1 0-58.7 43-77.1 72.6-77.1 30.7 0 52.7 12 66 35.9zm143.1 0l-32.8 17.3c-9.5-19.8-25.7-19.9-27.9-19.9-22.1 0-33.2 14.6-33.2 43.8 0 23.6 9.2 43.8 33.2 43.8 14.5 0 24.7-7.1 30.5-21.3l31 15.5c-2.1 3.8-21.4 39-65.1 39-22.7 0-74-9.9-74-77.1 0-58.7 43-77.1 72.6-77.1 30.7 0 52.6 12 65.6 35.9zM247.6 8.1C104.7 8.1 0 123.1 0 256.1c0 138.5 113.6 248 247.6 248 129.9 0 248.4-100.9 248.4-248 0-137.9-106.6-248-248.4-248zm.9 450.8c-112.5 0-203.7-93-203.7-202.8 0-105.4 85.4-203.3 203.7-203.3 112.5 0 202.8 89.5 202.8 203.3 0 121.7-99.7 202.8-202.8 202.8z"/></svg>
+    </div>
+  </div>
+
+    
+  </div>
+</article>
+
+
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%AD%97%E6%AE%B5%E4%BD%BF%E7%94%A8%E8%8C%83%E5%9B%B4%E6%9F%A5%E6%89%BE%E4%B8%8D%E4%BC%9A%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95"><span class="toc-number">1.</span> <span class="toc-text">一、联合索引第一个字段使用范围查找不会使用索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81in%E5%92%8Cor%E5%9C%A8%E8%A1%A8%E6%95%B0%E6%8D%AE%E9%87%8F%E6%AF%94%E8%BE%83%E5%A4%A7%E6%97%B6%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95%EF%BC%8C%E5%90%A6%E5%88%99%E4%BD%BF%E7%94%A8%E5%85%A8%E8%A1%A8%E6%89%AB%E6%8F%8F"><span class="toc-number">2.</span> <span class="toc-text">二、in和or在表数据量比较大时使用索引，否则使用全表扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81like-example-%E4%B8%80%E8%88%AC%E6%83%85%E5%86%B5%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95"><span class="toc-number">3.</span> <span class="toc-text">三、like example% 一般情况使用索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81MySQL%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">四、MySQL索引优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Order-By%E4%B8%8EGroup-By"><span class="toc-number">5.</span> <span class="toc-text">五、Order By与Group By</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AF%B9%E4%BA%8E%E6%8E%92%E5%BA%8F%E6%9D%A5%E8%AF%B4%EF%BC%8C%E5%A4%9A%E4%B8%AA%E7%9B%B8%E7%AD%89%E6%9D%A1%E4%BB%B6%E4%B9%9F%E6%98%AF%E8%8C%83%E5%9B%B4%E6%9F%A5%E8%AF%A2%EF%BC%8C%E4%BD%BF%E7%94%A8Extra-%E4%B8%BAUsing-filesort%E3%80%82"><span class="toc-number">5.1.</span> <span class="toc-text">1.对于排序来说，多个相等条件也是范围查询，使用Extra 为Using filesort。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96"><span class="toc-number">5.2.</span> <span class="toc-text">2.可以使用覆盖索引优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">七、优化总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL%E4%BC%98%E5%8C%96%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-number">6.1.</span> <span class="toc-text">MySQL优化小结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Using-filesort%E6%96%87%E4%BB%B6%E6%8E%92%E5%BA%8F%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="toc-number">6.2.</span> <span class="toc-text">Using filesort文件排序原理：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE"><span class="toc-number">7.</span> <span class="toc-text">数据</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://seyou.lol/posts/2024/03/b542e386.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://seyou.lol/posts/2024/03/b542e386.html&text=MySQL索引优化"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://seyou.lol/posts/2024/03/b542e386.html&title=MySQL索引优化"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://seyou.lol/posts/2024/03/b542e386.html&is_video=false&description=MySQL索引优化"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MySQL索引优化&body=Check out this article: https://seyou.lol/posts/2024/03/b542e386.html"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://seyou.lol/posts/2024/03/b542e386.html&title=MySQL索引优化"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://seyou.lol/posts/2024/03/b542e386.html&title=MySQL索引优化"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://seyou.lol/posts/2024/03/b542e386.html&title=MySQL索引优化"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://seyou.lol/posts/2024/03/b542e386.html&title=MySQL索引优化"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://seyou.lol/posts/2024/03/b542e386.html&name=MySQL索引优化&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://seyou.lol/posts/2024/03/b542e386.html&t=MySQL索引优化"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+      <div class="footer-left">
+        Copyright &copy;
+        
+        
+        2023-2024
+        Seyou
+      </div>
+      <div class="footer-right">
+        <nav>
+          <ul>
+            
+              <li><a href="/">首页</a></li>
+            
+              <li><a href="/archives/">归档</a></li>
+            
+              <li><a href="/search/">搜索</a></li>
+            
+              <li><a href="/about/">关于</a></li>
+            
+          </ul>
+          <ul>
+            <!-- 不蒜子统计 -->
+            
+              <span id="busuanzi_container_site_pv">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" witth="10" height="10"><path fill="#c9cacc" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg> <span id="busuanzi_value_site_pv"></span>
+              </span>
+              <span class="post-meta-divider">|</span>
+              <span id="busuanzi_container_site_uv" style='display:none'>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width='10' height='10'><path fill="#c9cacc" d="M224 16c-6.7 0-10.8-2.8-15.5-6.1C201.9 5.4 194 0 176 0c-30.5 0-52 43.7-66 89.4C62.7 98.1 32 112.2 32 128c0 14.3 25 27.1 64.6 35.9c-.4 4-.6 8-.6 12.1c0 17 3.3 33.2 9.3 48H45.4C38 224 32 230 32 237.4c0 1.7 .3 3.4 1 5l38.8 96.9C28.2 371.8 0 423.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7c0-58.5-28.2-110.4-71.7-143L415 242.4c.6-1.6 1-3.3 1-5c0-7.4-6-13.4-13.4-13.4H342.7c6-14.8 9.3-31 9.3-48c0-4.1-.2-8.1-.6-12.1C391 155.1 416 142.3 416 128c0-15.8-30.7-29.9-78-38.6C324 43.7 302.5 0 272 0c-18 0-25.9 5.4-32.5 9.9c-4.8 3.3-8.8 6.1-15.5 6.1zm56 208H267.6c-16.5 0-31.1-10.6-36.3-26.2c-2.3-7-12.2-7-14.5 0c-5.2 15.6-19.9 26.2-36.3 26.2H168c-22.1 0-40-17.9-40-40V169.6c28.2 4.1 61 6.4 96 6.4s67.8-2.3 96-6.4V184c0 22.1-17.9 40-40 40zm-88 96l16 32L176 480 128 288l64 32zm128-32L272 480 240 352l16-32 64-32z"/></svg> <span id="busuanzi_value_site_uv"></span>
+              </span>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            
+          </ul>
+        </nav>
+      </div>
+      
+</footer>
+
+
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<!-- FancyBox -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <script>
+    Fancybox.bind('[data-fancybox]', {
+      //
+    });      
+  </script>
+
+
+
+</body>
+</html>
